@@ -1,0 +1,5 @@
+/Users/andrewyu/Documents/ludumdare 40/Ludumdare40/LudumDare40/test1/testing/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/andrewyu/Documents/ludumdare 40/Ludumdare40/LudumDare40/test1/testing/bin/Debug/testing.exe.mdb
+/Users/andrewyu/Documents/ludumdare 40/Ludumdare40/LudumDare40/test1/testing/bin/Debug/testing.exe
+/Users/andrewyu/Documents/ludumdare 40/Ludumdare40/LudumDare40/test1/testing/obj/x86/Debug/testing.exe
+/Users/andrewyu/Documents/ludumdare 40/Ludumdare40/LudumDare40/test1/testing/obj/x86/Debug/testing.exe.mdb
