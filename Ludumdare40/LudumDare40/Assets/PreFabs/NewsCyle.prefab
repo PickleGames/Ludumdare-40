@@ -56,3 +56,6 @@ MonoBehaviour:
   newsType: 0
   currentEvent: {fileID: 0}
   trumpNews: {fileID: 0}
+  tv: {fileID: 0}
+  enableLawButton: {fileID: 0}
+  isTimeOver: 0

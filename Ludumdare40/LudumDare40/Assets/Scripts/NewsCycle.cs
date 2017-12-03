@@ -11,6 +11,7 @@ public class NewsCycle : MonoBehaviour {
     public CurrentEvent currentEvent;
     public TrumpNews trumpNews;
     public TV tv;
+    public EnableLawButton enableLawButton;
 
     private float timerCommon;
     private float timerLaws;
@@ -37,7 +38,8 @@ public class NewsCycle : MonoBehaviour {
             if (newsType == NewsType.CurrentEvent && !isCallCurrentEvent)
             {
                 currentEvent.ReadNewsJson();
-                Debug.Log(currentEvent.Events.Conservative.GoodTV);
+                enableLawButton.EnableRender();
+                //Debug.Log(currentEvent.Events.Conservative.GoodTV);
                 tv.UpdateChannel(currentEvent.Events.Channels, Channel.Trump.NEUTRAL);
                 isCallCurrentEvent = true;
             }
@@ -56,14 +58,12 @@ public class NewsCycle : MonoBehaviour {
                 timerCommon += Time.deltaTime;
             }
 
-           
+
 
             if (timerCommon >= timeCycle || (timerLaws >= timeLawsCycle && tv.isTVDone))
             {
                 ResetCycle();
             }
-
-            
         }
 
 
@@ -94,7 +94,7 @@ public class NewsCycle : MonoBehaviour {
     public void RandomNewsEvent()
     {
         float num = Random.Range(0f, 1f);
-        if(num < 0.99f)
+        if(num < 0.50f)
         {
             newsType = NewsType.CurrentEvent;
         }
@@ -109,9 +109,9 @@ public class NewsCycle : MonoBehaviour {
         isCycleFinish = false;
         isCallCurrentEvent = false;
         isCallTrumpEvent = false;
-       
         timerCommon = 0;
         timerLaws = 0;
+        enableLawButton.DisableRender();
         RandomNewsEvent();
     }
 
