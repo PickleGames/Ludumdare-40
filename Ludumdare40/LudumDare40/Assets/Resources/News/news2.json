@@ -1,0 +1,20 @@
+{
+  "Event": "Russian hacking the election",
+  "Channels" : {
+	"Conservative" : ["kick the rasucion", "n o russinna olsplss"],
+	"Liberal" : ["russn is a hoxa", "no hack ing er"]
+  },
+  "Laws": "No hacking the election",
+  "Approve": "Conservative",
+  "ApproveTweet" : ["tweet1","tweet2"],
+  "Veto": "Liberal",
+  "VetoTweet": ["tweet1", "tweet2"],
+  "Conservative":{
+    "GoodTV": ["good1","good2"],
+    "BadTV" : ["bad1", "bad2","bad3"]
+  },
+  "Liberal":{
+    "GoodTV": ["good1","good2"],
+    "BadTV" : ["bad1", "bad2","bad3"]
+  }
+}
