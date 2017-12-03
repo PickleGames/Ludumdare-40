@@ -12,7 +12,7 @@ public class TV : MonoBehaviour
     public int channelNum = 0, remoteCount = 0;
     public float remoteTime = 0.0f;
     public const int MAX_CHANNEL = 3;
-    public const float MOVE_SPEED = 75f;
+    public const float MOVE_SPEED = .15f;
     public Canvas canvas;
     public TextMeshProUGUI breakingNews, channelName;
     public bool isTVDone;
@@ -30,18 +30,21 @@ public class TV : MonoBehaviour
                               , tRect.transform.position.z);
 
         // startPos = new Vector3();
-
+        displaying = new List<Channel>();
         displaying.Add(new Channel(Channel.Trump.PRO, "FOX news", "Conservative", "Trump is great!!!!!!!!!!!"));
         displaying.Add(new Channel(Channel.Trump.CON, "CNN", "Liberal", "Trump is shit!"));
         displaying.Add(new Channel(Channel.Trump.NEUTRAL, "BBC", "Liberal", "Trump is ..."));
-        displaying.Add(new Channel(Channel.Trump.NEUTRAL, "", "", ""));
+        displaying.Add(new Channel(Channel.Trump.NEUTRAL, "", "", "~~~Static ~~ zzzhhzzz Staticcc~~~"));
         ResetDisplay();
     }
 
     // Update is called once per frame
     void Update()
     {
-        tRect.transform.Translate(Vector3.left * Time.deltaTime * MOVE_SPEED, Space.Self);
+        float m = MOVE_SPEED * Time.deltaTime;
+        float speed = m * cRect.rect.width * cRect.localScale.x;
+        //Debug.Log(speed);
+        tRect.transform.Translate(Vector3.left * speed, Space.Self);
         //Debug.Log(tRect.transform.position);
         //Debug.Log(cRect.transform.position.x - cRect.rect.width * cRect.localScale.x * 0.5f - tRect.rect.width * 0.5f);
         //Debug.Log("trec scale " + tRect.localScale);
@@ -75,7 +78,7 @@ public class TV : MonoBehaviour
         }
     }
 
-    void SwitchChannel()
+    public void SwitchChannel()
     {
         if (channelNum >= displaying.Count - 1)
         {
@@ -93,7 +96,7 @@ public class TV : MonoBehaviour
     {
         tRect.transform.position = startPos;
         breakingNews.text = displaying[channelNum].content;
-        channelName.text = displaying[channelNum].name;
+        channelName.text = displaying[channelNum].channelName;
         tRect.sizeDelta = new Vector2(breakingNews.fontSize / 1.6f * displaying[channelNum].content.Length
                                     + Regex.Matches(displaying[channelNum].content, @"\p{Lu}").Count * breakingNews.fontSize / 12.0f
                                     , tRect.rect.height);
@@ -103,7 +106,7 @@ public class TV : MonoBehaviour
     {
         for (int i = 0; i < displaying.Count; i++)
         {
-            if (displaying[i].name.Equals(cName))
+            if (displaying[i].channelName.Equals(cName))
             {
                 displaying[i].content = newContent;
                 displaying[i].side = sideWith;

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Laws : MonoBehaviour {
@@ -10,20 +11,28 @@ public class Laws : MonoBehaviour {
     public LawStates lawState = LawStates.NotSign;
     public string sideWith;
 
+    public TextMeshProUGUI billTitle;
+
     private bool isChose;
 
     void Start () {
-		
+        this.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        
+    }
 
-	}
+    public void UpdateBillTitle()
+    { 
+        if (currentEvent != null)
+        billTitle.text = currentEvent.Events.Laws;
+    }
 
     public void Approve()
     {
-        if (!isChose)
+        if (!isChose && currentEvent != null)
         {
             lawState = LawStates.Approve;
             sideWith = currentEvent.Events.Approve;
@@ -33,7 +42,7 @@ public class Laws : MonoBehaviour {
 
     public void Veto()
     {
-        if (!isChose)
+        if (!isChose && currentEvent != null)
         {
             lawState = LawStates.Veto;
             sideWith = currentEvent.Events.Veto;
@@ -46,5 +55,10 @@ public class Laws : MonoBehaviour {
         lawState = LawStates.NotSign;
         sideWith = "";
         isChose = false;
+    }
+
+    public void ToggleRender()
+    {
+        this.gameObject.SetActive(!this.gameObject.activeSelf);
     }
 }

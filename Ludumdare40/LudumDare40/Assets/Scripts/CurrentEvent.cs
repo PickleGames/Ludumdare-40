@@ -63,7 +63,7 @@ public class CurrentEvent : MonoBehaviour {
 
         if (newsNumber < dirs.Length) { 
             string path = dirs[newsNumber];
-            Debug.Log(path);
+            //Debug.Log(path);
             StreamReader reader = new StreamReader(path);
             string jsonString = reader.ReadToEnd();
             Debug.Log(jsonString);
@@ -75,6 +75,8 @@ public class CurrentEvent : MonoBehaviour {
         {
             isOutOfNews = true;
         }
+        //Update Bill Law Title
+        law.UpdateBillTitle();
         Debug.Log("current new number: " + newsNumber);
         
         
