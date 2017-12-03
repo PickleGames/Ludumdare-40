@@ -2,22 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Channel : MonoBehaviour {
-	public string name, content;
-	public enum Trump{
-		PRO, CON, NEUTRAL};
+public class Channel {
+	public enum Trump { PRO, CON, NEUTRAL}
+
+    public string channelName;
+    public string content;
+    public string type;
+
+
 	public Trump side;
-	public Channel(Trump side, string name, string content){
+
+	public Channel(Trump side, string name, string type, string content){
 		this.side = side;
-		this.name = name;
+		this.channelName = name;
 		this.content = content;
+        this.type = type;
 	}
 
 	public void UpdateNews(string newContent){
 		content = newContent;
 	}
 
-	public Trump getSide(){
+	public Trump GetSide(){
 		return side;
 	}
 }

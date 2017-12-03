@@ -1,5 +1,9 @@
 {
   "Event": "Net Neutrality",
+  "Channels" : {
+	"Conservative" : ["net neutrality suk", "destroy net neutrality is the way to go"],
+	"Liberal" : ["Save net neutrality", "Net neutrality is in danger"]
+  },
   "Laws": "Appeal Net Neutrality",
   "Approve": "Conservative",
   "ApproveTweet" : ["tweet1","tweet2"],
