@@ -1,16 +1,20 @@
 {
   "Event": "Net Neutrality",
+  "Channels" : {
+	"Conservative" : ["net neutrality suk", "destroy net neutrality is the way to go"],
+	"Liberal" : ["Save net neutrality", "Net neutrality is in danger"]
+  },
   "Laws": "Appeal Net Neutrality",
   "Approve": "Conservative",
   "ApproveTweet" : ["tweet1","tweet2"],
   "Veto": "Liberal",
   "VetoTweet": ["tweet1", "tweet2"],
   "Conservative":{
-    "GoodTweets": ["good1","good2"],
-    "BadTweets" : ["bad1", "bad2","bad3"]
+    "GoodTV": ["good1","good2"],
+    "BadTV" : ["bad1", "bad2","bad3"]
   },
   "Liberal":{
-    "GoodTweets": ["good1","good2"],
-    "BadTweets" : ["bad1", "bad2","bad3"]
+    "GoodTV": ["good1","good2"],
+    "BadTV" : ["bad1", "bad2","bad3"]
   }
 }

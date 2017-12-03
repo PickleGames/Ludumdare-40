@@ -1,0 +1,20 @@
+{
+  "Event": "THey tuk eurrr jjobbs",
+  "Channels" : {
+	"Conservative" : ["Kick the mexiacn ot", "dno mexicna plsss"],
+	"Liberal" : ["more imgerann", "imgrann save lige"]
+  },
+  "Laws": "Ban all immigrants",
+  "Approve": "Conservative",
+  "ApproveTweet" : ["tweet1","tweet2"],
+  "Veto": "Liberal",
+  "VetoTweet": ["tweet1", "tweet2"],
+  "Conservative":{
+    "GoodTV": ["good1","good2"],
+    "BadTV" : ["bad1", "bad2","bad3"]
+  },
+  "Liberal":{
+    "GoodTV": ["good1","good2"],
+    "BadTV" : ["bad1", "bad2","bad3"]
+  }
+}
