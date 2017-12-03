@@ -10,6 +10,7 @@ public class TweetReader : MonoBehaviour {
     private string currentTweet;
 
     public string[] Tweets { get { return tweets; } }
+
     public string CurrentTweet { get { return currentTweet; } set { currentTweet = value; } }
 
 	// Use this for initialization
@@ -39,4 +40,5 @@ public class TweetReader : MonoBehaviour {
         int randomTweet = (int) (Random.value * tweets.Length);
         currentTweet = tweets[randomTweet];
     }
+
 }
