@@ -67,7 +67,7 @@ public class NewsCycle : MonoBehaviour {
         }
 
 
-        Debug.Log(currentEvent.law.IsChose + "/" + !isTVLawUpdated + "/" + tv.isTVDone);
+        //Debug.Log(currentEvent.law.IsChose + "/" + !isTVLawUpdated + "/" + tv.isTVDone);
 	}
 
     private void FixedUpdate()
@@ -87,7 +87,7 @@ public class NewsCycle : MonoBehaviour {
                 default:
                     break;
             }
-            Debug.Log("AR EU RUNNING ?");
+            //Debug.Log("AR EU RUNNING ?");
             isTVLawUpdated = true;
         }
     }
