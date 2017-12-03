@@ -60,7 +60,7 @@ public class NewsCycle : MonoBehaviour {
 
 
 
-            if (timerCommon >= timeCycle || (timerLaws >= timeLawsCycle && tv.isTVDone))
+            if ((timerCommon >= timeCycle || timerLaws >= timeLawsCycle) && tv.isTVDone)
             {
                 ResetCycle();
             }
