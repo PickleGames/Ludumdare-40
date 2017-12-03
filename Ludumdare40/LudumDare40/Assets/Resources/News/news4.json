@@ -1,16 +1,20 @@
 {
   "Event": "CLean shiny coal!!!",
+  "Channels" : {
+	"Conservative" : ["clean coall plss", "cola clean ?"],
+	"Liberal" : ["no cola plssa", "noo plssss no coal"]
+  },
   "Laws": "Make Coal great again!!",
   "Approve": "Conservative",
   "ApproveTweet" : ["tweet1","tweet2"],
   "Veto": "Liberal",
   "VetoTweet": ["tweet1", "tweet2"],
   "Conservative":{
-    "GoodTweets": ["good1","good2"],
-    "BadTweets" : ["bad1", "bad2","bad3"]
+    "GoodTV": ["good1","good2"],
+    "BadTV" : ["bad1", "bad2","bad3"]
   },
   "Liberal":{
-    "GoodTweets": ["good1","good2"],
-    "BadTweets" : ["bad1", "bad2","bad3"]
+    "GoodTV": ["good1","good2"],
+    "BadTV" : ["bad1", "bad2","bad3"]
   }
 }

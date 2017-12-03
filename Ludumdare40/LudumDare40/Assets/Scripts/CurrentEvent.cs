@@ -80,23 +80,31 @@ public class CurrentEvent : MonoBehaviour {
         
     }
 
+    [Serializable]
+    public class Channels
+    {
+        public List<string> Conservative { get; set; }
+        public List<string> Liberal { get; set; }
+    }
 
     [Serializable]
     public class Conservative
     {
-        public List<string> GoodTweets { get; set; }
-        public List<string> BadTweets { get; set; }
+        public List<string> GoodTV { get; set; }
+        public List<string> BadTV { get; set; }
     }
     [Serializable]
     public class Liberal
     {
-        public List<string> GoodTweets { get; set; }
-        public List<string> BadTweets { get; set; }
+        public List<string> GoodTV { get; set; }
+        public List<string> BadTV { get; set; }
     }
+
     [Serializable]
     public class CEvents
     {
         public string Event { get; set; }
+        public Channels Channels { get; set; }
         public string Laws { get; set; }
         public string Approve { get; set; }
         public List<string> ApproveTweet { get; set; }

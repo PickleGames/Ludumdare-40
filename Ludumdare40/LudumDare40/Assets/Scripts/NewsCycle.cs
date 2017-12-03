@@ -10,6 +10,7 @@ public class NewsCycle : MonoBehaviour {
     public NewsType newsType;
     public CurrentEvent currentEvent;
     public TrumpNews trumpNews;
+    public TV tv;
 
     private float timerCommon;
     private float timerLaws;
@@ -19,6 +20,9 @@ public class NewsCycle : MonoBehaviour {
 
     private bool isCallCurrentEvent;
     private bool isCallTrumpEvent;
+    private bool isTVLawUpdated;
+
+    public bool isTimeOver;
 
     void Start () {
         RandomNewsEvent();
@@ -29,9 +33,12 @@ public class NewsCycle : MonoBehaviour {
     {
         if (!isCycleFinish)
         {
-            if(newsType == NewsType.CurrentEvent && !isCallCurrentEvent)
+            isTVLawUpdated = false;
+            if (newsType == NewsType.CurrentEvent && !isCallCurrentEvent)
             {
                 currentEvent.ReadNewsJson();
+                Debug.Log(currentEvent.Events.Conservative.GoodTV);
+                tv.UpdateChannel(currentEvent.Events.Channels, Channel.Trump.NEUTRAL);
                 isCallCurrentEvent = true;
             }
             else if(newsType == NewsType.TrumpEvent && !isCallTrumpEvent)
@@ -41,7 +48,7 @@ public class NewsCycle : MonoBehaviour {
             }
 
             if (newsType == NewsType.CurrentEvent && currentEvent.law.IsChose)
-            {
+            {   
                 timerLaws += Time.deltaTime;
             }
             else
@@ -49,18 +56,45 @@ public class NewsCycle : MonoBehaviour {
                 timerCommon += Time.deltaTime;
             }
 
+           
 
-            if (timerCommon >= timeCycle || timerLaws >= timeLawsCycle)
+            if (timerCommon >= timeCycle || (timerLaws >= timeLawsCycle && tv.isTVDone))
             {
                 ResetCycle();
             }
+
+            
         }
+
+
+        Debug.Log(currentEvent.law.IsChose + "/" + !isTVLawUpdated + "/" + tv.isTVDone);
 	}
 
+    private void FixedUpdate()
+    {
+        if (currentEvent.law.IsChose && !isTVLawUpdated && tv.isTVDone)
+        {
+            switch (currentEvent.law.sideWith)
+            {
+                case "Conservative":
+                    tv.UpdateChannel("Conservative", currentEvent.Events.Conservative.GoodTV, Channel.Trump.PRO);
+                    tv.UpdateChannel("Liberal", currentEvent.Events.Conservative.BadTV, Channel.Trump.CON);
+                    break;
+                case "Liberal":
+                    tv.UpdateChannel("Conservative", currentEvent.Events.Conservative.BadTV, Channel.Trump.CON);
+                    tv.UpdateChannel("Liberal", currentEvent.Events.Conservative.GoodTV, Channel.Trump.PRO);
+                    break;
+                default:
+                    break;
+            }
+            Debug.Log("AR EU RUNNING ?");
+            isTVLawUpdated = true;
+        }
+    }
     public void RandomNewsEvent()
     {
         float num = Random.Range(0f, 1f);
-        if(num < 0.5f)
+        if(num < 0.99f)
         {
             newsType = NewsType.CurrentEvent;
         }
@@ -75,6 +109,7 @@ public class NewsCycle : MonoBehaviour {
         isCycleFinish = false;
         isCallCurrentEvent = false;
         isCallTrumpEvent = false;
+       
         timerCommon = 0;
         timerLaws = 0;
         RandomNewsEvent();
