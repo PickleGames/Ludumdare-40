@@ -29,3 +29,18 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Ludumdare40/LudumDare40/ProjectSettings/Physics2DSettings.asset
+Ludumdare40/LudumDare40/ProjectSettings/DynamicsManager.asset
+Ludumdare40/LudumDare40/Assets/Animation/JsonDotNet/Documentation.meta
+Ludumdare40/LudumDare40/Assets/Animation/JsonDotNet/Assemblies/Windows/Newtonsoft.Json.dll.meta
+Ludumdare40/LudumDare40/Assets/Animation/JsonDotNet/Assemblies/Windows.meta
+Ludumdare40/LudumDare40/Assets/Animation/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll.meta
+Ludumdare40/LudumDare40/Assets/Animation/JsonDotNet/Assemblies/Standalone.meta
+Ludumdare40/LudumDare40/Assets/Animation/JsonDotNet/Assemblies/AOT/Newtonsoft.Json.dll.meta
+Ludumdare40/LudumDare40/Assets/Animation/JsonDotNet/Assemblies/AOT.meta
+Ludumdare40/LudumDare40/Assets/Animation/JsonDotNet/Assemblies.meta
+Ludumdare40/LudumDare40/Assets/Animation/JsonDotNet.meta
+Ludumdare40/LudumDare40/.vs/LudumDare40/v15/Server/sqlite3/storage.ide-wal
+Ludumdare40/LudumDare40/.vs/LudumDare40/v15/Server/sqlite3/storage.ide-shm
+Ludumdare40/LudumDare40/.vs/LudumDare40/v15/Server/sqlite3/storage.ide
+Ludumdare40/LudumDare40/.vs/LudumDare40/v15/Server/sqlite3/db.lock
