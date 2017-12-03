@@ -23,16 +23,22 @@ public class Laws : MonoBehaviour {
 
     public void Approve()
     {
-        lawState = LawStates.Approve;
-        sideWith = currentEvent.Events.Approve;
-        isChose = true; 
+        if (!isChose)
+        {
+            lawState = LawStates.Approve;
+            sideWith = currentEvent.Events.Approve;
+            isChose = true; 
+        }
     }
 
     public void Veto()
     {
-        lawState = LawStates.Veto;
-        sideWith = currentEvent.Events.Veto;
-        isChose = true;
+        if (!isChose)
+        {
+            lawState = LawStates.Veto;
+            sideWith = currentEvent.Events.Veto;
+            isChose = true;
+        }
     }
 
     public void ResetState()
