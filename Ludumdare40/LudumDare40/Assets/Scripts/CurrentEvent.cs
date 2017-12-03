@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using TMPro;
 
 public class CurrentEvent : MonoBehaviour {
 
@@ -17,6 +18,7 @@ public class CurrentEvent : MonoBehaviour {
 
     void Start () {
         ReadJson();
+
 	}
 	
 	// Update is called once per frame
@@ -39,14 +41,14 @@ public class CurrentEvent : MonoBehaviour {
     [Serializable]
     public class Conservative
     {
-        public List<string> GoodTweets { get; set; }
-        public List<string> BadTweets { get; set; }
+		public List<string> GoodTV { get; set; }
+        public List<string> BadTV { get; set; }
     }
     [Serializable]
     public class Liberal
     {
-        public List<string> GoodTweets { get; set; }
-        public List<string> BadTweets { get; set; }
+		public List<string> GoodTV { get; set; }
+		public List<string> BadTV { get; set; }
     }
     [Serializable]
     public class CEvents

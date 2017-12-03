@@ -19,6 +19,7 @@ public class Laws : MonoBehaviour {
 		if(lawState == LawStates.Approve)
         {
             sideWith = currentEvent.Events.Approve;
+
         }else if(lawState == LawStates.Veto)
         {
             sideWith = currentEvent.Events.Veto;
