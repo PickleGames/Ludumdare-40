@@ -4,10 +4,10 @@ using UnityEngine;
 using TMPro;
 using System.Text.RegularExpressions;
 using System.Linq;
+using UnityEngine.UI;
 
 public class TV : MonoBehaviour
 {
-
     public List<Channel> displaying;
     public int channelNum = 0, remoteCount = 0;
     public float remoteTime = 0.0f;
