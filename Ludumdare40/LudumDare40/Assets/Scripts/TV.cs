@@ -8,7 +8,8 @@ using System.Linq;
 public class TV : MonoBehaviour {
 
 	public List<Channel> displaying;
-	public int channelNum = 0;
+	public int channelNum = 0, remoteCount = 0;
+	public float remoteTime = 0.0f;
 	public const int MAX_CHANNEL = 3;
 	public const float MOVE_SPEED = 75f;
 	public Canvas canvas;
@@ -22,9 +23,9 @@ public class TV : MonoBehaviour {
 		startPos = new Vector3 (cRect.transform.position.x+cRect.rect.width*0.5f+tRect.rect.width*0.5f
 							  , cRect.transform.position.y-cRect.rect.height*0.5f+tRect.rect.height*0.5f
 							  , tRect.transform.position.z);
-		/*displaying.Add(new Channel(Channel.Trump.PRO, "FOX news", "Trump is great!!!!!!!!!!!"));
+		displaying.Add(new Channel(Channel.Trump.PRO, "FOX news", "Trump is great!!!!!!!!!!!"));
 		displaying.Add(new Channel(Channel.Trump.CON, "CNN", "Trump is shit!"));
-		displaying.Add(new Channel(Channel.Trump.NEUTRAL, "BBC", "Trump is ..."));*/
+		displaying.Add(new Channel(Channel.Trump.NEUTRAL, "BBC", "Trump is ..."));
 		displaying.Add(new Channel(Channel.Trump.NEUTRAL, "", ""));
 		resetDisplay ();
 	}
@@ -39,7 +40,11 @@ public class TV : MonoBehaviour {
 			SwitchChannel ();
 			Debug.Log (channelNum);
 		} else if(Input.GetKeyDown(KeyCode.U)){
-			updateChannel ("CNN", "Fuck Trump!");
+			updateChannel ("CNN", "Fuck Trump!", Channel.Trump.CON);
+		}
+		remoteTime += Time.deltaTime;
+		if (remoteTime > 10.0f && remoteCount > 0) {
+			remoteCount--;
 		}
 	}
 
@@ -49,6 +54,7 @@ public class TV : MonoBehaviour {
 		} else {
 			channelNum++;
 		}
+		remoteCount++;
 		resetDisplay ();
 	}
 		
@@ -61,10 +67,11 @@ public class TV : MonoBehaviour {
 									, tRect.rect.height);
 	}
 
-	void updateChannel(string cName, string newContent){
+	void updateChannel(string cName, string newContent, Channel.Trump sideWith){
 		for(int i = 0; i < displaying.Count; i++){
 			if(displaying[i].name.Equals(cName)){
-				displaying[i].content = newContent;
+				displaying [i].content = newContent;
+				displaying [i].side = sideWith;
 			}
 		}
 		resetDisplay ();
@@ -75,7 +82,7 @@ public class TV : MonoBehaviour {
 		displaying.Add (temp);
 	}
 
-    public IEnumerator DisplayTV(string text, float time)
+    /*public IEnumerator DisplayTV(string text, float time)
     {
         float timeElapsed = 0;
         while (timeElapsed >= time)
@@ -83,5 +90,5 @@ public class TV : MonoBehaviour {
             timeElapsed += Time.deltaTime;
             yield return 0;
         }
-    }
+    }*/
 }
