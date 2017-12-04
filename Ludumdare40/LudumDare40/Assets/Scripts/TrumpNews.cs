@@ -4,7 +4,7 @@ using UnityEngine;
 //using System.IO;
 
 public class TrumpNews : MonoBehaviour {
-    private string path = "Assets/Resources/News/";
+    private string path = "News/TrumpEvent";
 
     private string[] goodNews;
     private string[] badNews;
@@ -30,7 +30,7 @@ public class TrumpNews : MonoBehaviour {
     {
         //StreamReader reader = new StreamReader(path + fileName);
         //string text = reader.ReadToEnd();
-        TextAsset txts = Resources.Load(fileName) as TextAsset;
+        TextAsset txts = Resources.Load(path + fileName) as TextAsset;
         Debug.Log(txts);
         string text = txts.text;
         string[] news = text.Split('|');

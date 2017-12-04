@@ -10,6 +10,7 @@ public class CurrentEvent : MonoBehaviour {
     public CEvents Events { get { return cEvents; } }
     public Laws law;
     public bool isOutOfNews;
+    public int numberOfFile;
 
     private CEvents cEvents;
     private string newPath = "\\Assets\\Resources\\News\\";
@@ -20,11 +21,10 @@ public class CurrentEvent : MonoBehaviour {
         
         try
         {
-            string path = Directory.GetCurrentDirectory() + newPath;
-            dirs = new string[4];
-            for(int i = 0; i < 4; i++)
+            dirs = new string[numberOfFile];
+            for(int i = 0; i < numberOfFile; i++)
             {
-                dirs[i] = "news" + (i + 1) + "";
+                dirs[i] = "News/CurrentEvent/news" + (i + 1) + "";
                 Debug.Log(dirs[i]);
             }
             //Debug.Log("number of news " + dirs.Length);

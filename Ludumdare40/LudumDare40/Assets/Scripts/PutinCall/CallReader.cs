@@ -11,7 +11,7 @@ public class CallReader : MonoBehaviour {
     private string currentTrampPhrase;
     // Use this for initialization
     void Start () {
-        path = "Assets/Resources/Phrases/";
+        path = "Phrases/";
         PutinPhrases = ReadFromFile("PutinPhrases");
         TrampPhrases = ReadFromFile("TrampPhrases");
         RandomisePhrase();
@@ -27,7 +27,7 @@ public class CallReader : MonoBehaviour {
     {
         string[] phrases;
         //StreamReader reader = new StreamReader(path + file);
-        TextAsset txts = Resources.Load(file) as TextAsset;
+        TextAsset txts = Resources.Load(path + file) as TextAsset;
         Debug.Log(txts);
         string text = txts.text;
         //string text = reader.ReadToEnd();
