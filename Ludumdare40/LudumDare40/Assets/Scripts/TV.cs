@@ -5,6 +5,9 @@ using TMPro;
 using System.Text.RegularExpressions;
 using System.Linq;
 using UnityEngine.UI;
+using System.IO;
+using System;
+using UnityEditor;
 
 public class TV : MonoBehaviour
 {
@@ -28,7 +31,7 @@ public class TV : MonoBehaviour
     {
 		remoteBroken = false;
 		remoteButton.enabled = false;
-		obstruct = Random.Range (15.0f, 25.0f);
+		obstruct = UnityEngine.Random.Range (15.0f, 25.0f);
         tRect = breakingNews.GetComponent<RectTransform>();
         cRect = canvas.GetComponent<RectTransform>();
 		rRect = remote.GetComponent<RectTransform> ();
@@ -47,6 +50,8 @@ public class TV : MonoBehaviour
 		remote.onClick.AddListener(RemoteOutClick);
 		backButton.onClick.AddListener(RemoteInClick);
 		remoteButton.onClick.AddListener(SwitchClick);
+
+
     }
 
     // Update is called once per frame
@@ -100,13 +105,23 @@ public class TV : MonoBehaviour
             remoteTime = 0;
         }
 
+		/*if (remoteBroken) {
+			if (remote.image != image2) {
+				remote.image = image2;
+			}
+		} else {
+			if (remote.image != image1) {
+				remote.image = image1;
+			}
+		}*/
+
 		if (obstructTime >= obstruct) {
 			if (displaying [channelNum].side != Channel.Trump.CON) {
 				do {
 					SwitchChannel ();
 				} while(displaying [channelNum].side != Channel.Trump.CON);
 			}
-			obstruct = Random.Range (15.0f, 25.0f);
+			obstruct = UnityEngine.Random.Range (15.0f, 25.0f);
 			obstructTime = 0;
 		}
 
@@ -116,6 +131,7 @@ public class TV : MonoBehaviour
 			barControl.changeBar(-0.075f*barControl.popularity/bars.MAX_BAR *2, "a");
 		}
     }
+
 
 	void RemoteOutClick()
 	{
@@ -192,7 +208,7 @@ public class TV : MonoBehaviour
             {
                 if (displaying[i].type.Equals(cType))
                 {
-                    displaying[i].content = newContent[Random.Range(0, newContent.Count)];
+                    displaying[i].content = newContent[UnityEngine.Random.Range(0, newContent.Count)];
                     displaying[i].side = sideWith;
                 }
             }
@@ -208,11 +224,11 @@ public class TV : MonoBehaviour
             switch (displaying[i].type)
             {
                 case "Conservative":
-                    displaying[i].content = channel.Conservative[Random.Range(0, channel.Conservative.Count)];
+                    displaying[i].content = channel.Conservative[UnityEngine.Random.Range(0, channel.Conservative.Count)];
                     displaying[i].side = sideWith;
                     break;
                 case "Liberal":
-                    displaying[i].content = channel.Liberal[Random.Range(0, channel.Liberal.Count)];
+                    displaying[i].content = channel.Liberal[UnityEngine.Random.Range(0, channel.Liberal.Count)];
                     displaying[i].side = sideWith;
                     break;
                 default:
