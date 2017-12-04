@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class NewsCycle : MonoBehaviour {
 
-    public float timeCycle = 10.0f;
-    public float timeLawsCycle = 10.0f;
+    public float timeCycle = 5.0f;
+    public float timeLawsCycle = 5.0f;
     public enum NewsType { CurrentEvent, TrumpEvent }
     public NewsType newsType;
     public CurrentEvent currentEvent;
     public TrumpNews trumpNews;
     public TV tv;
     public EnableLawButton enableLawButton;
+    public TweetReader tweetReader;
+    public int numberCycle;
 
     private float timerCommon;
     private float timerLaws;
@@ -22,7 +24,7 @@ public class NewsCycle : MonoBehaviour {
     private bool isCallCurrentEvent;
     private bool isCallTrumpEvent;
     private bool isTVLawUpdated;
-
+    
     public bool isTimeOver;
 
     void Start () {
@@ -37,22 +39,31 @@ public class NewsCycle : MonoBehaviour {
             isTVLawUpdated = false;
             if (newsType == NewsType.CurrentEvent && !isCallCurrentEvent)
             {
+                isCallCurrentEvent = true;
                 currentEvent.ReadNewsJson();
                 enableLawButton.EnableRender();
-                //Debug.Log(currentEvent.Events.Conservative.GoodTV);
                 tv.UpdateChannel(currentEvent.Events.Channels, Channel.Trump.NEUTRAL);
-                isCallCurrentEvent = true;
+                Debug.Log("current event get call");
             }
             else if(newsType == NewsType.TrumpEvent && !isCallTrumpEvent)
             {
-                //TODO: TRUMP EVENT STUFF
                 isCallTrumpEvent = true;
                 trumpNews.UpdateList();
+                Debug.Log("trump get call");
             }
 
             if (newsType == NewsType.CurrentEvent && currentEvent.law.IsChose)
             {   
                 timerLaws += Time.deltaTime;
+                if(currentEvent.law.lawState == Laws.LawStates.Approve)
+                {
+                    tweetReader.PolicyTweets = currentEvent.Events.ApproveTweet;
+                }
+                else if(currentEvent.law.lawState == Laws.LawStates.Veto)
+                {
+                    tweetReader.PolicyTweets = currentEvent.Events.VetoTweet;
+                }
+                
             }
             else
             {
@@ -63,16 +74,13 @@ public class NewsCycle : MonoBehaviour {
 
             if ((timerCommon >= timeCycle || timerLaws >= timeLawsCycle) && tv.isTVDone)
             {
+                Debug.Log("reset cycle");
                 ResetCycle();
             }
+
         }
 
 
-        //Debug.Log(currentEvent.law.IsChose + "/" + !isTVLawUpdated + "/" + tv.isTVDone);
-	}
-
-    private void FixedUpdate()
-    {
         if (currentEvent.law.IsChose && !isTVLawUpdated && tv.isTVDone)
         {
             switch (currentEvent.law.sideWith)
@@ -88,14 +96,16 @@ public class NewsCycle : MonoBehaviour {
                 default:
                     break;
             }
-            //Debug.Log("AR EU RUNNING ?");
+            Debug.Log("AR EU RUNNING ?");
             isTVLawUpdated = true;
         }
+        //Debug.Log(currentEvent.law.IsChose + "/" + !isTVLawUpdated + "/" + tv.isTVDone);
     }
+
     public void RandomNewsEvent()
     {
         float num = Random.Range(0f, 1f);
-        if(num < 0.50f)
+        if(num < 0.99f)
         {
             newsType = NewsType.CurrentEvent;
         }
@@ -113,6 +123,7 @@ public class NewsCycle : MonoBehaviour {
         timerCommon = 0;
         timerLaws = 0;
         enableLawButton.DisableRender();
+        numberCycle++;
         RandomNewsEvent();
     }
 

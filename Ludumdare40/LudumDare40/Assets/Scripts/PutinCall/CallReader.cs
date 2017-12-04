@@ -15,9 +15,9 @@ public class CallReader : MonoBehaviour {
         PutinPhrases = ReadFromFile("PutinPhrases.txt");
         TrampPhrases = ReadFromFile("TrampPhrases.txt");
         RandomisePhrase();
-        Debug.Log(PutinPhrases[0]);
-        Debug.Log(TrampPhrases[0]);
-        	}
+        //Debug.Log(PutinPhrases[0]);
+        //Debug.Log(TrampPhrases[0]);
+    }
 	
 	// Update is called once per frame
 	void Update() {
@@ -39,7 +39,6 @@ public class CallReader : MonoBehaviour {
         int randomPhrase = (int)(Random.value * PutinPhrases.Length);
         currentPutinPhrase = PutinPhrases[randomPhrase];
         currentTrampPhrase = TrampPhrases[randomPhrase];
-        Debug.Log(randomPhrase);
     }
 
     public string GetCurrentPutin()

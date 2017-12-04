@@ -27,26 +27,31 @@ public class TV : MonoBehaviour
     void Start()
     {
 		remoteBroken = false;
+        remoteOut = true;
 		remoteButton.enabled = false;
 		obstruct = Random.Range (15.0f, 25.0f);
         tRect = breakingNews.GetComponent<RectTransform>();
         cRect = canvas.GetComponent<RectTransform>();
 		rRect = remote.GetComponent<RectTransform> ();
+
 		hidden = new Vector3(-rRect.rect.width * 0.1f, Screen.height*1.1f - rRect.rect.height, rRect.position.z); 
         startPos = new Vector3(cRect.transform.position.x + cRect.rect.width * cRect.localScale.x * 0.5f + tRect.rect.width * cRect.localScale.x
                               , cRect.transform.position.y - cRect.rect.height * cRect.localScale.y * 0.5f + tRect.rect.height * cRect.localScale.y * 0.5f
                               , tRect.transform.position.z);
 		rRect.position = hidden;
         // startPos = new Vector3();
+
         displaying = new List<Channel>();
         displaying.Add(new Channel(Channel.Trump.PRO, "FOX news", "Conservative", "Trump is great!!!!!!!!!!!"));
         displaying.Add(new Channel(Channel.Trump.CON, "CNN", "Liberal", "Trump is shit!"));
         displaying.Add(new Channel(Channel.Trump.NEUTRAL, "BBC", "Liberal", "Trump is ..."));
         displaying.Add(new Channel(Channel.Trump.NEUTRAL, "", "", "~~~Static ~~ zzzhhzzz Staticcc~~~"));
         ResetDisplay();
-		remote.onClick.AddListener(RemoteOutClick);
+
+        remoteButton.onClick.AddListener(SwitchClick);
+        remote.onClick.AddListener(RemoteOutClick);
 		backButton.onClick.AddListener(RemoteInClick);
-		remoteButton.onClick.AddListener(SwitchClick);
+		
     }
 
     // Update is called once per frame
@@ -55,10 +60,6 @@ public class TV : MonoBehaviour
         float m = MOVE_SPEED * Time.deltaTime;
         float speed = m * cRect.rect.width * cRect.localScale.x;
         tRect.transform.Translate(Vector3.left * speed, Space.Self);
-        //Debug.Log(speed);
-        //Debug.Log(tRect.transform.position);
-        //Debug.Log(cRect.transform.position.x - cRect.rect.width * cRect.localScale.x * 0.5f - tRect.rect.width * 0.5f);
-        //Debug.Log("trec scale " + tRect.localScale);
 
         if (tRect.transform.position.x < cRect.transform.position.x - cRect.rect.width * cRect.localScale.x * 0.5f - tRect.rect.width * .5f * cRect.localScale.x)
         {
@@ -111,9 +112,9 @@ public class TV : MonoBehaviour
 		}
 
 		if (displaying [channelNum].side == Channel.Trump.CON) {
-			barControl.changeBar(0.085f*barControl.popularity/bars.MAX_BAR *2, "a");
+			barControl.ChangeBar(0.085f*barControl.popularity/bars.MAX_BAR *2, "a");
 		} else if(displaying [channelNum].side == Channel.Trump.PRO){
-			barControl.changeBar(-0.075f*barControl.popularity/bars.MAX_BAR *2, "a");
+			barControl.ChangeBar(-0.075f*barControl.popularity/bars.MAX_BAR *2, "a");
 		}
     }
 

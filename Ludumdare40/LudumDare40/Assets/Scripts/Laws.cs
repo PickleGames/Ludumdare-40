@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Laws : MonoBehaviour {
 
@@ -11,7 +12,8 @@ public class Laws : MonoBehaviour {
     public LawStates lawState = LawStates.NotSign;
     public string sideWith;
 
-    public TextMeshProUGUI billTitle;
+    public TextMeshProUGUI billTitle, signBy;
+    public Button approve, veto;
 
     private bool isChose;
 
@@ -21,7 +23,18 @@ public class Laws : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+
+    }
+
+    private void DisableChooseButton()
+    {
+        approve.gameObject.SetActive(false);
+        veto.gameObject.SetActive(false);
+    }
+    private void EnableChooseButton()
+    {
+        approve.gameObject.SetActive(true);
+        veto.gameObject.SetActive(true);
     }
 
     public void UpdateBillTitle()
@@ -36,7 +49,9 @@ public class Laws : MonoBehaviour {
         {
             lawState = LawStates.Approve;
             sideWith = currentEvent.Events.Approve;
-            isChose = true; 
+            isChose = true;
+            signBy.text = "Approved by Donald Drumpf";
+            DisableChooseButton();
         }
     }
 
@@ -47,6 +62,8 @@ public class Laws : MonoBehaviour {
             lawState = LawStates.Veto;
             sideWith = currentEvent.Events.Veto;
             isChose = true;
+            signBy.text = "Vetoed by Donald Drumpf";
+            DisableChooseButton();
         }
     }
 
@@ -55,6 +72,8 @@ public class Laws : MonoBehaviour {
         lawState = LawStates.NotSign;
         sideWith = "";
         isChose = false;
+        EnableChooseButton();
+        signBy.text = "";
     }
 
     public void ToggleRender()

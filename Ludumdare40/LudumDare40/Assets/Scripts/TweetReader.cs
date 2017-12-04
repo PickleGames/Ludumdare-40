@@ -18,6 +18,7 @@ public class TweetReader : MonoBehaviour {
 
     public List<string> PolicyTweets { get { return policyTweets; } set { policyTweets = value; } }
     public List<string> EventTweets {  get { return eventTweets; } set { eventTweets = value; } }
+
     public string CurrentTweet { get { return currentTweet; } set { currentTweet = value; } }
 
 
@@ -26,7 +27,7 @@ public class TweetReader : MonoBehaviour {
         ReadFile("Tweets1.txt");
         policyTweets = new List<string>(trumpTweets);
         eventTweets = new List<string>(trumpTweets);
-        Debug.Log(currentTweet);
+        //Debug.Log(currentTweet);
         
     }
 	
@@ -45,7 +46,7 @@ public class TweetReader : MonoBehaviour {
     }
 
 
-    public void RandomizeTweet(TweetType type )
+    public void RandomizeTweet(TweetType type)
     {
         if (type == TweetType.MEDIA)
         {
