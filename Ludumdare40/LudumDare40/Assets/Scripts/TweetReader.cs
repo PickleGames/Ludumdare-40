@@ -18,7 +18,7 @@ public class TweetReader : MonoBehaviour {
         ReadFile("Tweets1.txt");
         RandomizeTweet();
         Debug.Log(currentTweet);
-
+        
     }
 	
 	// Update is called once per frame
