@@ -18,21 +18,13 @@ public class TrumpNews : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ReadFile("TrumpNews.txt");
-
-        currentNews = NewsArrayToList(goodNews);
-        DebugNews();
-        tv.UpdateChannel("Conservative", currentNews, Channel.Trump.PRO);
-
-        currentNews = NewsArrayToList(badNews);
-        DebugNews();
-        tv.UpdateChannel("Liberal", currentNews, Channel.Trump.CON);
-        
-	}
+       
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        
-	}
+    
+    }
 
     public void ReadFile(string fileName)
     {
@@ -40,8 +32,8 @@ public class TrumpNews : MonoBehaviour {
 
         string text = reader.ReadToEnd();
         string[] news = text.Split('|');
-        goodNews = news[0].Split(':');
-        badNews = news[1].Split(':');
+        goodNews = news[0].Split(';');
+        badNews = news[1].Split(';');
 
         reader.Close();
     }
@@ -54,6 +46,19 @@ public class TrumpNews : MonoBehaviour {
         }
     }
 
+    public void UpdateList()
+    {
+        currentNews = new List<string>(goodNews);
+        DebugNews();
+        tv.UpdateChannel("Conservative", currentNews, Channel.Trump.PRO);
+
+        currentNews = new List<string>(badNews);
+        DebugNews();
+        tv.UpdateChannel("Liberal", currentNews, Channel.Trump.CON);
+    }
+
+
+    // OBSOLETE
     public List<string> NewsArrayToList(string[] news)
     {
         List<string> newsList = new List<string>();

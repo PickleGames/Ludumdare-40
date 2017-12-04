@@ -153,7 +153,7 @@ Prefab:
     - target: {fileID: 224568830837018866, guid: 8922de5e0dfc57b47b3f5b6a0c84e5a7,
         type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 224568830837018866, guid: 8922de5e0dfc57b47b3f5b6a0c84e5a7,
         type: 2}
@@ -210,6 +210,10 @@ Prefab:
       propertyPath: newCyle
       value: 
       objectReference: {fileID: 1806333094}
+    - target: {fileID: 1713334945518800, guid: 8922de5e0dfc57b47b3f5b6a0c84e5a7, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8922de5e0dfc57b47b3f5b6a0c84e5a7, type: 2}
   m_IsPrefabParent: 0
@@ -264,7 +268,7 @@ Prefab:
     - target: {fileID: 224840494279029814, guid: 57ac2f168a2246246ac4ab925f883760,
         type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224840494279029814, guid: 57ac2f168a2246246ac4ab925f883760,
         type: 2}
@@ -426,6 +430,15 @@ Prefab:
       propertyPath: enableLawButton
       value: 
       objectReference: {fileID: 1852510433}
+    - target: {fileID: 1760919639455636, guid: e7fdc998c2744984498a105b025f4598, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114739406351175314, guid: e7fdc998c2744984498a105b025f4598,
+        type: 2}
+      propertyPath: newsType
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e7fdc998c2744984498a105b025f4598, type: 2}
   m_IsPrefabParent: 0
@@ -474,7 +487,7 @@ Prefab:
     - target: {fileID: 224448100649272756, guid: 9ce1e31165d37854bbf5466e7780b1eb,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224448100649272756, guid: 9ce1e31165d37854bbf5466e7780b1eb,
         type: 2}
@@ -529,6 +542,26 @@ Prefab:
     - target: {fileID: 1938987598323580, guid: 9ce1e31165d37854bbf5466e7780b1eb, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114684370045163470, guid: 9ce1e31165d37854bbf5466e7780b1eb,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MakeMediaTweet
+      objectReference: {fileID: 0}
+    - target: {fileID: 114217442519255454, guid: 9ce1e31165d37854bbf5466e7780b1eb,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MakeEventTweet
+      objectReference: {fileID: 0}
+    - target: {fileID: 114266362470165158, guid: 9ce1e31165d37854bbf5466e7780b1eb,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MakePolicyTweet
+      objectReference: {fileID: 0}
+    - target: {fileID: 114266362470165158, guid: 9ce1e31165d37854bbf5466e7780b1eb,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ce1e31165d37854bbf5466e7780b1eb, type: 2}
@@ -780,7 +813,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4050023986807074, guid: 8ca6066f75d918a499ff27433d243b03, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ca6066f75d918a499ff27433d243b03, type: 2}
@@ -829,6 +862,10 @@ Prefab:
       propertyPath: law
       value: 
       objectReference: {fileID: 971553133}
+    - target: {fileID: 1064845966987492, guid: 29ee618c61df2964893e5d84e6d23db7, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29ee618c61df2964893e5d84e6d23db7, type: 2}
   m_IsPrefabParent: 0
@@ -892,7 +929,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1806333094 stripped
 MonoBehaviour:
@@ -939,7 +976,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1852510433 stripped
 MonoBehaviour:

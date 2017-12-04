@@ -28,9 +28,24 @@ public class TweetOptions : MonoBehaviour {
         }
 	}
 
-    public void MakeTweet()
+    public void MakeMediaTweet()
     {
-        //tweetReader.RandomizeTweet();
+        tweetReader.RandomizeTweet(TweetReader.TweetType.MEDIA);
+        ShowTweet();
+    }
+    public void MakePolicyTweet()
+    {
+        tweetReader.RandomizeTweet(TweetReader.TweetType.POLICY);
+        ShowTweet();
+    }
+    public void MakeEventTweet()
+    {
+        tweetReader.RandomizeTweet(TweetReader.TweetType.EVENT);
+        ShowTweet();
+    }
+
+    public void ShowTweet()
+    {
         tweetText.text = tweetReader.CurrentTweet;
         tweetText.enabled = true;
         tweet.enabled = true;
@@ -38,7 +53,6 @@ public class TweetOptions : MonoBehaviour {
 
     public void CloseOptions()
     {
-        
         this.GetComponent<Canvas>().enabled = false; 
     }
 }
