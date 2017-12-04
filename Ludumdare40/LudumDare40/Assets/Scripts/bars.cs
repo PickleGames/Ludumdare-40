@@ -31,8 +31,8 @@ public class bars : MonoBehaviour {
 			lose ();
 		}
 
-		if (Input.GetKeyDown (KeyCode.Space))
-			changeBar (-10, "a");
+		//if (Input.GetKeyDown (KeyCode.Space))
+		//	changeBar (-10, "a");
 	}
 
 	void win(){
@@ -43,12 +43,14 @@ public class bars : MonoBehaviour {
 		Debug.Log("you lose");
 	}
 
-	void changeBar(float num, string bar){
+	public void changeBar(float num, string bar){
 		if (bar.StartsWith ("a")|| bar.StartsWith ("A")) {
 			if (anxiety <= MAX_BAR) {
 				anxiety += num;
 				if (anxiety > MAX_BAR) {
 					anxiety = MAX_BAR;
+				} else if (anxiety < 0) {
+					anxiety = 0;
 				}
 				aBar.GetComponent<RectTransform> ().sizeDelta = new Vector2 (aBar.rectTransform.rect.width, aHeight * anxiety / MAX_BAR);
 			}
@@ -57,6 +59,8 @@ public class bars : MonoBehaviour {
 				popularity += num;
 				if (popularity > MAX_BAR) {
 					popularity = MAX_BAR;
+				} else if (popularity < 0) {
+					popularity = 0;
 				}
 				pBar.GetComponent<RectTransform> ().sizeDelta = new Vector2 (pBar.rectTransform.rect.width, pHeight * popularity / MAX_BAR);
 			}

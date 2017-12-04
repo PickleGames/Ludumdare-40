@@ -10,19 +10,22 @@ public class TV : MonoBehaviour
 {
     public List<Channel> displaying;
     public int channelNum = 0, remoteCount = 0;
-    public float remoteTime = 0.0f;
+	public float remoteTime = 0.0f, obstructTime = 0.0f, obstruct;
     public const int MAX_CHANNEL = 3;
     public const float MOVE_SPEED = .15f;
     public Canvas canvas;
     public TextMeshProUGUI breakingNews, channelName;
     public bool isTVDone;
     public NewsCycle newCyle;
+	public bars barControl;
 
     private RectTransform tRect, cRect;
     private Vector3 startPos;
 
+
     void Start()
     {
+		obstruct = Random.Range (15.0f, 25.0f);
         tRect = breakingNews.GetComponent<RectTransform>();
         cRect = canvas.GetComponent<RectTransform>();
         startPos = new Vector3(cRect.transform.position.x + cRect.rect.width * cRect.localScale.x * 0.5f + tRect.rect.width * cRect.localScale.x
@@ -62,16 +65,18 @@ public class TV : MonoBehaviour
             isTVDone = false;
         }
 
-        /*if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             SwitchChannel();
             Debug.Log(channelNum);
         }
-        else if (Input.GetKeyDown(KeyCode.U))
+		/*else if (Input.GetKeyDown(KeyCode.U))
         {
             UpdateChannel("CNN", "Fuck Trump!", Channel.Trump.CON);
         }*/
         remoteTime += Time.deltaTime;
+		obstructTime += Time.deltaTime;
+
         if (remoteTime > 10.0f)
         {
             if (remoteCount > 0)
@@ -80,6 +85,22 @@ public class TV : MonoBehaviour
             }
             remoteTime = 0;
         }
+
+		if (obstructTime >= obstruct) {
+			if (displaying [channelNum].side != Channel.Trump.CON) {
+				do {
+					SwitchChannel ();
+				} while(displaying [channelNum].side != Channel.Trump.CON);
+			}
+			obstruct = Random.Range (15.0f, 25.0f);
+			obstructTime = 0;
+		}
+
+		if (displaying [channelNum].side == Channel.Trump.CON) {
+			barControl.changeBar(0.085f, "a");
+		} else if(displaying [channelNum].side == Channel.Trump.PRO){
+			barControl.changeBar(-0.075f, "a");
+		}
     }
 
     public void SwitchChannel()
