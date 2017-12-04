@@ -20,6 +20,7 @@ public class TweetReader : MonoBehaviour {
     public List<string> EventTweets {  get { return eventTweets; } set { eventTweets = value; } }
     public string CurrentTweet { get { return currentTweet; } set { currentTweet = value; } }
 
+
 	// Use this for initialization
 	void Start () {
         ReadFile("Tweets1.txt");
@@ -27,7 +28,7 @@ public class TweetReader : MonoBehaviour {
         eventTweets = new List<string>(trumpTweets);
 
         Debug.Log(currentTweet);
-
+        
     }
 	
 	// Update is called once per frame
