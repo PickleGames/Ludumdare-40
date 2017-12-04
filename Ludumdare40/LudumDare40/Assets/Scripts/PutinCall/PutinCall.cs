@@ -18,6 +18,7 @@ public class PutinCall : MonoBehaviour {
     void Start() {
 		phoneTime = 0;
 		phoneCount = 0;
+		phoneBroken = false;
         canvas.enabled = false;
         callReader = GetComponent<CallReader>();
         Debug.Log(callReader.GetCurrentPutin());

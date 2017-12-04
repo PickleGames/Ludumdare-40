@@ -15,23 +15,28 @@ public class TV : MonoBehaviour
     public const float MOVE_SPEED = .15f;
     public Canvas canvas;
     public TextMeshProUGUI breakingNews, channelName;
-    public bool isTVDone;
+    public bool isTVDone, remoteBroken, remoteOut;
     public NewsCycle newCyle;
 	public bars barControl;
+	public Button remote, remoteButton, backButton;
 
-    private RectTransform tRect, cRect;
-    private Vector3 startPos;
+    private RectTransform tRect, cRect, rRect;
+    private Vector3 startPos, hidden;
 
 
     void Start()
     {
+		remoteBroken = false;
+		remoteButton.enabled = false;
 		obstruct = Random.Range (15.0f, 25.0f);
         tRect = breakingNews.GetComponent<RectTransform>();
         cRect = canvas.GetComponent<RectTransform>();
+		rRect = remote.GetComponent<RectTransform> ();
+		hidden = new Vector3(-rRect.rect.width * 0.1f, Screen.height*1.1f - rRect.rect.height, rRect.position.z); 
         startPos = new Vector3(cRect.transform.position.x + cRect.rect.width * cRect.localScale.x * 0.5f + tRect.rect.width * cRect.localScale.x
                               , cRect.transform.position.y - cRect.rect.height * cRect.localScale.y * 0.5f + tRect.rect.height * cRect.localScale.y * 0.5f
                               , tRect.transform.position.z);
-
+		rRect.position = hidden;
         // startPos = new Vector3();
         displaying = new List<Channel>();
         displaying.Add(new Channel(Channel.Trump.PRO, "FOX news", "Conservative", "Trump is great!!!!!!!!!!!"));
@@ -39,6 +44,9 @@ public class TV : MonoBehaviour
         displaying.Add(new Channel(Channel.Trump.NEUTRAL, "BBC", "Liberal", "Trump is ..."));
         displaying.Add(new Channel(Channel.Trump.NEUTRAL, "", "", "~~~Static ~~ zzzhhzzz Staticcc~~~"));
         ResetDisplay();
+		remote.onClick.AddListener(RemoteOutClick);
+		backButton.onClick.AddListener(RemoteInClick);
+		remoteButton.onClick.AddListener(SwitchClick);
     }
 
     // Update is called once per frame
@@ -81,7 +89,13 @@ public class TV : MonoBehaviour
         {
             if (remoteCount > 0)
             {
-                remoteCount--;
+				if (remoteBroken) {
+					remoteBroken = false;
+					remoteButton.enabled = true;
+					remoteCount = 0;
+				} else {
+					remoteCount--;
+				}
             }
             remoteTime = 0;
         }
@@ -97,24 +111,54 @@ public class TV : MonoBehaviour
 		}
 
 		if (displaying [channelNum].side == Channel.Trump.CON) {
-			barControl.changeBar(0.085f, "a");
+			barControl.changeBar(0.085f*barControl.popularity/bars.MAX_BAR *2, "a");
 		} else if(displaying [channelNum].side == Channel.Trump.PRO){
-			barControl.changeBar(-0.075f, "a");
+			barControl.changeBar(-0.075f*barControl.popularity/bars.MAX_BAR *2, "a");
 		}
     }
 
+	void RemoteOutClick()
+	{
+		rRect.position =  new Vector3(rRect.rect.width*0.5f +10, rRect.position.y, rRect.position.z);
+		remote.enabled = false;
+		remoteButton.enabled = true;
+		remoteOut = true;
+	}
+
+	void SwitchClick()
+	{
+		if (remoteOut) {
+			SwitchChannel ();
+		}
+	}
+
+	void RemoteInClick()
+	{
+		if (remoteOut) {
+			rRect.position = hidden;
+			remote.enabled = true;
+			remoteButton.enabled = false;
+			remoteOut = false;
+		}
+		Debug.Log ("button click");
+	}
+
     public void SwitchChannel()
     {
-        if (channelNum >= displaying.Count - 1)
-        {
-            channelNum = 0;
-        }
-        else
-        {
-            channelNum++;
-        }
-        remoteCount++;
-        ResetDisplay();
+		if (!remoteBroken) {
+			if (channelNum >= displaying.Count - 1) {
+				channelNum = 0;
+			} else {
+				channelNum++;
+			}
+			remoteCount++;
+			if (remoteCount >= 50) {
+				remoteBroken = true;
+				remoteTime = 0;
+				remoteButton.enabled = false;
+			}
+			ResetDisplay ();
+		}
     }
 
     void ResetDisplay()
