@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class TV : MonoBehaviour
 {
-    public List<Channel> displaying;
+    public List<Channel> tvChannels;
     public int channelNum = 0, remoteCount = 0;
 	public float remoteTime = 0.0f, obstructTime = 0.0f, obstruct;
     public const int MAX_CHANNEL = 3;
@@ -41,11 +41,11 @@ public class TV : MonoBehaviour
 		rRect.position = hidden;
         // startPos = new Vector3();
 
-        displaying = new List<Channel>();
-        displaying.Add(new Channel(Channel.Trump.PRO, "FOX news", "Conservative", "Trump is great!!!!!!!!!!!"));
-        displaying.Add(new Channel(Channel.Trump.CON, "CNN", "Liberal", "Trump is shit!"));
-        displaying.Add(new Channel(Channel.Trump.NEUTRAL, "BBC", "Liberal", "Trump is ..."));
-        displaying.Add(new Channel(Channel.Trump.NEUTRAL, "", "", "~~~Static ~~ zzzhhzzz Staticcc~~~"));
+        tvChannels = new List<Channel>();
+        tvChannels.Add(new Channel(Channel.Trump.PRO, "FOX news", "Conservative", "Trump is great!!!!!!!!!!!"));
+        tvChannels.Add(new Channel(Channel.Trump.CON, "CNN", "Liberal", "Trump is shit!"));
+        tvChannels.Add(new Channel(Channel.Trump.NEUTRAL, "BBC", "Liberal", "Trump is ..."));
+        tvChannels.Add(new Channel(Channel.Trump.NEUTRAL, "", "", "~~~Static ~~ zzzhhzzz Staticcc~~~"));
         ResetDisplay();
 
         remoteButton.onClick.AddListener(SwitchClick);
@@ -101,19 +101,21 @@ public class TV : MonoBehaviour
             remoteTime = 0;
         }
 
-		if (obstructTime >= obstruct) {
-			if (displaying [channelNum].side != Channel.Trump.CON) {
-				do {
-					SwitchChannel ();
-				} while(displaying [channelNum].side != Channel.Trump.CON);
-			}
-			obstruct = Random.Range (15.0f, 25.0f);
-			obstructTime = 0;
-		}
+        //TODO : WTF IS THIS !!!!
+		//if (obstructTime >= obstruct) {
+		//	if (displaying [channelNum].side != Channel.Trump.CON) {
+		//		do {
+  //                  Debug.Log("runn");
+		//			SwitchChannel ();
+		//		} while(displaying [channelNum].side != Channel.Trump.CON);
+		//	}
+		//	obstruct = Random.Range (15.0f, 25.0f);
+		//	obstructTime = 0;
+		//}
 
-		if (displaying [channelNum].side == Channel.Trump.CON) {
+		if (tvChannels [channelNum].side == Channel.Trump.CON) {
 			barControl.ChangeBar(0.085f*barControl.popularity/bars.MAX_BAR *2, "a");
-		} else if(displaying [channelNum].side == Channel.Trump.PRO){
+		} else if(tvChannels [channelNum].side == Channel.Trump.PRO){
 			barControl.ChangeBar(-0.075f*barControl.popularity/bars.MAX_BAR *2, "a");
 		}
     }
@@ -147,7 +149,7 @@ public class TV : MonoBehaviour
     public void SwitchChannel()
     {
 		if (!remoteBroken) {
-			if (channelNum >= displaying.Count - 1) {
+			if (channelNum >= tvChannels.Count - 1) {
 				channelNum = 0;
 			} else {
 				channelNum++;
@@ -165,21 +167,21 @@ public class TV : MonoBehaviour
     void ResetDisplay()
     {
         tRect.transform.position = startPos;
-        breakingNews.text = displaying[channelNum].content;
-        channelName.text = displaying[channelNum].channelName;
-        tRect.sizeDelta = new Vector2(breakingNews.fontSize / 1.6f * displaying[channelNum].content.Length
-                                    + Regex.Matches(displaying[channelNum].content, @"\p{Lu}").Count * breakingNews.fontSize / 12.0f
+        breakingNews.text = tvChannels[channelNum].content;
+        channelName.text = tvChannels[channelNum].channelName;
+        tRect.sizeDelta = new Vector2(breakingNews.fontSize / 1.6f * tvChannels[channelNum].content.Length
+                                    + Regex.Matches(tvChannels[channelNum].content, @"\p{Lu}").Count * breakingNews.fontSize / 12.0f
                                     , tRect.rect.height);
     }
 
     public void UpdateChannel(string cName, string newContent, Channel.Trump sideWith)
     {
-        for (int i = 0; i < displaying.Count; i++)
+        for (int i = 0; i < tvChannels.Count; i++)
         {
-            if (displaying[i].channelName.Equals(cName))
+            if (tvChannels[i].channelName.Equals(cName))
             {
-                displaying[i].content = newContent;
-                displaying[i].side = sideWith;
+                tvChannels[i].content = newContent;
+                tvChannels[i].side = sideWith;
             }
         }
         ResetDisplay();
@@ -189,12 +191,12 @@ public class TV : MonoBehaviour
     {
         if (isTVDone)
         {
-            for (int i = 0; i < displaying.Count; i++)
+            for (int i = 0; i < tvChannels.Count; i++)
             {
-                if (displaying[i].type.Equals(cType))
+                if (tvChannels[i].type.Equals(cType))
                 {
-                    displaying[i].content = newContent[Random.Range(0, newContent.Count)];
-                    displaying[i].side = sideWith;
+                    tvChannels[i].content = newContent[Random.Range(0, newContent.Count)];
+                    tvChannels[i].side = sideWith;
                 }
             }
             ResetDisplay();
@@ -204,21 +206,21 @@ public class TV : MonoBehaviour
 
     public void UpdateChannel(CurrentEvent.Channels channel, Channel.Trump sideWith)
     {
-        for (int i = 0; i < displaying.Count; i++)
+        for (int i = 0; i < tvChannels.Count; i++)
         {
-            switch (displaying[i].type)
+            switch (tvChannels[i].type)
             {
                 case "Conservative":
-                    displaying[i].content = channel.Conservative[Random.Range(0, channel.Conservative.Count)];
-                    displaying[i].side = sideWith;
+                    tvChannels[i].content = channel.Conservative[Random.Range(0, channel.Conservative.Count)];
+                    tvChannels[i].side = sideWith;
                     break;
                 case "Liberal":
-                    displaying[i].content = channel.Liberal[Random.Range(0, channel.Liberal.Count)];
-                    displaying[i].side = sideWith;
+                    tvChannels[i].content = channel.Liberal[Random.Range(0, channel.Liberal.Count)];
+                    tvChannels[i].side = sideWith;
                     break;
                 default:
-                    displaying[i].content = "";
-                    displaying[i].side = sideWith;
+                    tvChannels[i].content = "";
+                    tvChannels[i].side = sideWith;
                     break;
             }
         }
@@ -229,7 +231,7 @@ public class TV : MonoBehaviour
     void AddChannel(string cName, string cType, string newContent, Channel.Trump sideWith)
     {
         Channel temp = new Channel(sideWith, cName, cType, newContent);
-        displaying.Add(temp);
+        tvChannels.Add(temp);
     }
 
     /*public IEnumerator DisplayTV(string text, float time)

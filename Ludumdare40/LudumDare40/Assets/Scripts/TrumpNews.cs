@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
+//using System.IO;
 
 public class TrumpNews : MonoBehaviour {
     private string path = "Assets/Resources/News/";
@@ -14,10 +14,10 @@ public class TrumpNews : MonoBehaviour {
     private string currentHeadline;
 
     public TV tv;
-
+    public TextAsset txt1;
 	// Use this for initialization
 	void Start () {
-        ReadFile("TrumpNews.txt");
+        ReadFile("TrumpNews");
        
     }
 	
@@ -28,14 +28,16 @@ public class TrumpNews : MonoBehaviour {
 
     public void ReadFile(string fileName)
     {
-        StreamReader reader = new StreamReader(path + fileName);
-
-        string text = reader.ReadToEnd();
+        //StreamReader reader = new StreamReader(path + fileName);
+        //string text = reader.ReadToEnd();
+        TextAsset txts = Resources.Load(fileName) as TextAsset;
+        Debug.Log(txts);
+        string text = txts.text;
         string[] news = text.Split('|');
         goodNews = news[0].Split(';');
         badNews = news[1].Split(';');
 
-        reader.Close();
+        //reader.Close();
     }
 
     public void DebugNews()
