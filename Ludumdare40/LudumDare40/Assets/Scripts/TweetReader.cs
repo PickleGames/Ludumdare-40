@@ -26,7 +26,6 @@ public class TweetReader : MonoBehaviour {
         ReadFile("Tweets1.txt");
         policyTweets = new List<string>(trumpTweets);
         eventTweets = new List<string>(trumpTweets);
-
         Debug.Log(currentTweet);
         
     }
