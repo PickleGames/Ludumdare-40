@@ -4,17 +4,17 @@
 	"Conservative" : ["net neutrality suk", "destroy net neutrality is the way to go"],
 	"Liberal" : ["Save net neutrality", "Net neutrality is in danger"]
   },
-  "Laws": "Appeal Net Neutrality",
+  "Laws": "Repeal Net Neutrality",
   "Approve": "Conservative",
-  "ApproveTweet" : ["tweet1","tweet2"],
+  "ApproveTweet" : ["Your beloved president has made the internet great again!! #LoveMe","I just made the internet way better, everyone is saying it!! #ONLINE"],
   "Veto": "Liberal",
-  "VetoTweet": ["tweet1", "tweet2"],
+  "VetoTweet": ["Net Neutrality was killing AMERICA!! I fixed it, you are all welcome!! #MEGAMAN", "No one understands the online, like me, everyone knows this! #Smart"],
   "Conservative":{
-    "GoodTV": ["good1","good2"],
-    "BadTV" : ["bad1", "bad2","bad3"]
+    "GoodTV": ["Great President Drumpf  fixes the internet, suck it libruls snowflakes","Our wise leader, took the internet from the commies and brought it back to capitlasim!"],
+    "BadTV" : ["Drumpf has failed this great nation!", "President loves commie freeloading internt libruls","Drumpf turns back on billionare supporters!!!"]
   },
   "Liberal":{
-    "GoodTV": ["good1","good2"],
-    "BadTV" : ["bad1", "bad2","bad3"]
+    "GoodTV": ["Drumpf might not be that bad!","Finally Drumpf has done something good for once"],
+    "BadTV" : ["Idiot president doesn't know how the internet works", "Drumpf has doomed the future","Drumpf suck billionare dicks?"]
   }
 }

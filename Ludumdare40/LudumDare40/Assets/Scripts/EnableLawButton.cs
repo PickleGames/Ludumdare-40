@@ -20,8 +20,8 @@ public class EnableLawButton : MonoBehaviour {
     {
         RectTransform rec = GetComponent<RectTransform>();
         RectTransform recP = GetComponentInParent<RectTransform>();
-        Debug.Log("pos " + rec.position);
-        Debug.Log("parent scale " + GetComponentInParent<RectTransform>().localScale.y);
+        //Debug.Log("pos " + rec.position);
+        //Debug.Log("parent scale " + GetComponentInParent<RectTransform>().localScale.y);
 
         this.gameObject.SetActive(true);
         Instantiate(particle, rec.position, Quaternion.identity);

@@ -42,7 +42,7 @@ public class TrumpNews : MonoBehaviour {
     {
         foreach(string s in currentNews)
         {
-            Debug.Log(s);
+            //Debug.Log(s);
         }
     }
 

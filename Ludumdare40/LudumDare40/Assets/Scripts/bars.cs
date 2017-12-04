@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class bars : MonoBehaviour {
@@ -26,24 +27,25 @@ public class bars : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (popularity >= MAX_BAR) {
-			win ();
+			Win ();
 		} else if (popularity <= 0.0f || anxiety >= MAX_BAR) {
-			lose ();
+			Lose ();
 		}
 
 		//if (Input.GetKeyDown (KeyCode.Space))
 		//	changeBar (-10, "a");
 	}
 
-	void win(){
+	void Win(){
 		Debug.Log("you win");
 	}
 
-	void lose(){
+	void Lose(){
 		Debug.Log("you lose");
-	}
+        SceneManager.LoadScene("EndScene");
+    }
 
-	public void changeBar(float num, string bar){
+	public void ChangeBar(float num, string bar){
 		if (bar.StartsWith ("a")|| bar.StartsWith ("A")) {
 			if (anxiety <= MAX_BAR) {
 				anxiety += num;

@@ -1,20 +1,20 @@
 {
-  "Event": "Russian hacking the election",
+  "Event": "Paris Agreement",
   "Channels" : {
-	"Conservative" : ["kick the rasucion", "n o russinna olsplss"],
-	"Liberal" : ["russn is a hoxa", "no hack ing er"]
+	"Conservative" : ["Climate change is not real!", "Frenchies try to tell AMERICA how to run itself??"],
+	"Liberal" : ["The future of our planet is in danger", "Will President Drumpf singlehandlely destroy the entire planet.... probably."]
   },
-  "Laws": "No hacking the election",
+  "Laws": "Pull Out of Paris Agreement",
   "Approve": "Conservative",
-  "ApproveTweet" : ["tweet1","tweet2"],
+  "ApproveTweet" : ["No one tells AMERICA how much coal we can burn!!! #COAL","I don't care about some country on other side of planet, I will build a wall to protect us from their BAD climate"],
   "Veto": "Liberal",
-  "VetoTweet": ["tweet1", "tweet2"],
+  "VetoTweet": ["I have just made a great deal, for clean AMERICAN air in future!", "I just saved everyone's lives but nobody is talking about it! #SAD!"],
   "Conservative":{
-    "GoodTV": ["good1","good2"],
-    "BadTV" : ["bad1", "bad2","bad3"]
+    "GoodTV": ["President sticks it to the rest of the world","Drumpf keeps promise to coal industry in America!"],
+    "BadTV" : ["Drumpf apeases smelly europeans", "Drumpf gives commies exaclty what they wanted","President breaks promise to American Coal"]
   },
   "Liberal":{
-    "GoodTV": ["good1","good2"],
-    "BadTV" : ["bad1", "bad2","bad3"]
+    "GoodTV": ["Drumpf does the planet good!","Drumpf put scientists and humanity at eease with new decison!"],
+    "BadTV" : ["Drumpf has killed us all!", "Drumpf has doomed the future","President doesn't care about the planet or anyone who lives on it."]
   }
 }

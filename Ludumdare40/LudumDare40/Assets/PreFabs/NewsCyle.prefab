@@ -58,4 +58,6 @@ MonoBehaviour:
   trumpNews: {fileID: 0}
   tv: {fileID: 0}
   enableLawButton: {fileID: 0}
+  tweetReader: {fileID: 0}
+  numberCycle: 0
   isTimeOver: 0
