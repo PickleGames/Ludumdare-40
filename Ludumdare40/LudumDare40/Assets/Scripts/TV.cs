@@ -4,10 +4,10 @@ using UnityEngine;
 using TMPro;
 using System.Text.RegularExpressions;
 using System.Linq;
+using UnityEngine.UI;
 
 public class TV : MonoBehaviour
 {
-
     public List<Channel> displaying;
     public int channelNum = 0, remoteCount = 0;
     public float remoteTime = 0.0f;
@@ -43,16 +43,16 @@ public class TV : MonoBehaviour
     {
         float m = MOVE_SPEED * Time.deltaTime;
         float speed = m * cRect.rect.width * cRect.localScale.x;
-        //Debug.Log(speed);
         tRect.transform.Translate(Vector3.left * speed, Space.Self);
+        //Debug.Log(speed);
         //Debug.Log(tRect.transform.position);
         //Debug.Log(cRect.transform.position.x - cRect.rect.width * cRect.localScale.x * 0.5f - tRect.rect.width * 0.5f);
         //Debug.Log("trec scale " + tRect.localScale);
 
-        if (tRect.transform.position.x < cRect.transform.position.x - cRect.rect.width * cRect.localScale.x * 0.5f - tRect.rect.width * .35f * cRect.localScale.x)
+        if (tRect.transform.position.x < cRect.transform.position.x - cRect.rect.width * cRect.localScale.x * 0.5f - tRect.rect.width * .5f * cRect.localScale.x)
         {
             isTVDone = true;
-            if (tRect.transform.position.x < cRect.transform.position.x - cRect.rect.width * cRect.localScale.x * 0.5f - tRect.rect.width * .5f * cRect.localScale.x)
+            if (tRect.transform.position.x < cRect.transform.position.x - cRect.rect.width * cRect.localScale.x * 0.5f - tRect.rect.width * .65f * cRect.localScale.x)
             {
                 tRect.transform.position = startPos;
             }
@@ -62,7 +62,7 @@ public class TV : MonoBehaviour
             isTVDone = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             SwitchChannel();
             Debug.Log(channelNum);
@@ -70,11 +70,15 @@ public class TV : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.U))
         {
             UpdateChannel("CNN", "Fuck Trump!", Channel.Trump.CON);
-        }
+        }*/
         remoteTime += Time.deltaTime;
-        if (remoteTime > 10.0f && remoteCount > 0)
+        if (remoteTime > 10.0f)
         {
-            remoteCount--;
+            if (remoteCount > 0)
+            {
+                remoteCount--;
+            }
+            remoteTime = 0;
         }
     }
 
@@ -153,6 +157,7 @@ public class TV : MonoBehaviour
             }
         }
         ResetDisplay();
+        newCyle.isTimeOver = false;
     }
 
     void AddChannel(string cName, string cType, string newContent, Channel.Trump sideWith)
