@@ -103,7 +103,7 @@ public class NewsCycle : MonoBehaviour {
     public void RandomNewsEvent()
     {
         float num = Random.Range(0f, 1f);
-        if(num < 0.99f)
+        if(num < 0.50f)
         {
             newsType = NewsType.CurrentEvent;
         }
