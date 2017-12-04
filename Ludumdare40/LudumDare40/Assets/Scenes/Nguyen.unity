@@ -870,6 +870,11 @@ Prefab:
       propertyPath: tv
       value: 
       objectReference: {fileID: 409541701}
+    - target: {fileID: 114815520703291252, guid: 44e22006ae5dbfc44b0b61e88c029429,
+        type: 2}
+      propertyPath: txt1
+      value: 
+      objectReference: {fileID: 4900000, guid: c7246734171bf1b44a9997f3b5cbd54f, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44e22006ae5dbfc44b0b61e88c029429, type: 2}
   m_IsPrefabParent: 0
@@ -1019,6 +1024,16 @@ Prefab:
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114083184800459564, guid: 156839055e3c2b04cbb92ae909451876,
+        type: 2}
+      propertyPath: parentHeightPercent
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114083184800459564, guid: 156839055e3c2b04cbb92ae909451876,
+        type: 2}
+      propertyPath: parentWidthPercent
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 156839055e3c2b04cbb92ae909451876, type: 2}

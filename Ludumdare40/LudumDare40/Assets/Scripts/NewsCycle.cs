@@ -19,8 +19,6 @@ public class NewsCycle : MonoBehaviour {
     private float timerLaws;
     private bool isCycleFinish;
 
-    
-
     private bool isCallCurrentEvent;
     private bool isCallTrumpEvent;
     private bool isTVLawUpdated;

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
+//using System.IO;
 
 public class CallReader : MonoBehaviour {
     private string path;
@@ -12,8 +12,8 @@ public class CallReader : MonoBehaviour {
     // Use this for initialization
     void Start () {
         path = "Assets/Resources/Phrases/";
-        PutinPhrases = ReadFromFile("PutinPhrases.txt");
-        TrampPhrases = ReadFromFile("TrampPhrases.txt");
+        PutinPhrases = ReadFromFile("PutinPhrases");
+        TrampPhrases = ReadFromFile("TrampPhrases");
         RandomisePhrase();
         //Debug.Log(PutinPhrases[0]);
         //Debug.Log(TrampPhrases[0]);
@@ -26,10 +26,13 @@ public class CallReader : MonoBehaviour {
     public string[] ReadFromFile(string file)
     {
         string[] phrases;
-        StreamReader reader = new StreamReader(path + file);
-        string text = reader.ReadToEnd();
+        //StreamReader reader = new StreamReader(path + file);
+        TextAsset txts = Resources.Load(file) as TextAsset;
+        Debug.Log(txts);
+        string text = txts.text;
+        //string text = reader.ReadToEnd();
         phrases = text.Split(';');
-        reader.Close();
+        //reader.Close();
         return phrases;
 
 

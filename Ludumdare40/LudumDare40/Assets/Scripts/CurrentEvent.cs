@@ -21,8 +21,12 @@ public class CurrentEvent : MonoBehaviour {
         try
         {
             string path = Directory.GetCurrentDirectory() + newPath;
-            //Debug.Log(path);
-            dirs = Directory.GetFiles(@path, "*json");
+            dirs = new string[4];
+            for(int i = 0; i < 4; i++)
+            {
+                dirs[i] = "news" + (i + 1) + "";
+                Debug.Log(dirs[i]);
+            }
             //Debug.Log("number of news " + dirs.Length);
         }
         catch (Exception e)
@@ -63,8 +67,9 @@ public class CurrentEvent : MonoBehaviour {
 
         if (newsNumber < dirs.Length) { 
             string path = dirs[newsNumber];
-            StreamReader reader = new StreamReader(path);
-            string jsonString = reader.ReadToEnd();
+            Debug.Log(path);
+            TextAsset txts = Resources.Load(path) as TextAsset;
+            string jsonString = txts.text;
             Debug.Log(jsonString);
             cEvents = JsonConvert.DeserializeObject<CEvents>(jsonString);
             Debug.Log(cEvents.Event);
