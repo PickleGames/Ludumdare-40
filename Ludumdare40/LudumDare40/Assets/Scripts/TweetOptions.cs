@@ -9,22 +9,50 @@ public class TweetOptions : MonoBehaviour {
     private TweetReader tweetReader;
     public Canvas tweet;
 
+
     // Use this for initialization
     void Start () {
         tweet.enabled = false;
         tweetReader = GetComponentInParent<TweetReader>();
         tweetText.text = "";
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+    float timer = 0;
+    // Update is called once per frame
+    void Update () {
+        timer += Time.deltaTime;
+        if (tweet.enabled && timer > 5f)
+        {
+            tweet.enabled = false;
+            timer = 0;
+        }
 	}
 
-    public void MakeTweet()
+    public void MakeMediaTweet()
+    {
+        tweetReader.RandomizeTweet(TweetReader.TweetType.MEDIA);
+        ShowTweet();
+    }
+    public void MakePolicyTweet()
+    {
+        tweetReader.RandomizeTweet(TweetReader.TweetType.POLICY);
+        ShowTweet();
+    }
+    public void MakeEventTweet()
+    {
+        tweetReader.RandomizeTweet(TweetReader.TweetType.EVENT);
+        ShowTweet();
+    }
+
+    public void ShowTweet()
     {
         tweetText.text = tweetReader.CurrentTweet;
         tweetText.enabled = true;
         tweet.enabled = true;
+    }
+
+    public void CloseOptions()
+    {
+        this.GetComponent<Canvas>().enabled = false; 
     }
 }

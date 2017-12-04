@@ -47,6 +47,7 @@ public class NewsCycle : MonoBehaviour {
             {
                 //TODO: TRUMP EVENT STUFF
                 isCallTrumpEvent = true;
+                trumpNews.UpdateList();
             }
 
             if (newsType == NewsType.CurrentEvent && currentEvent.law.IsChose)
