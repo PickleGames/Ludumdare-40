@@ -9,6 +9,7 @@ public class TweetOptions : MonoBehaviour {
     private TweetReader tweetReader;
     public Canvas tweet;
 
+    public Canvas PA_Canvas;
 
     // Use this for initialization
     void Start () {
@@ -46,13 +47,27 @@ public class TweetOptions : MonoBehaviour {
 
     public void ShowTweet()
     {
-        tweetText.text = tweetReader.CurrentTweet;
-        tweetText.enabled = true;
-        tweet.enabled = true;
+        if (!tweet.enabled) {
+            float barRate = 5;
+            PA_Canvas.GetComponent<bars>().changeBar(barRate * GoodOrBad(), "p");
+            PA_Canvas.GetComponent<bars>().changeBar(-barRate, "a");
+            tweetText.text = tweetReader.CurrentTweet;
+            tweetText.enabled = true;
+            tweet.enabled = true;
+        }
     }
 
     public void CloseOptions()
     {
         this.GetComponent<Canvas>().enabled = false; 
+    }
+
+    public float GoodOrBad()
+    {
+        if (Random.value * 100 < 50)
+        {
+            return -1f;
+        }
+        return 1f;
     }
 }
