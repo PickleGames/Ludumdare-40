@@ -12,6 +12,7 @@ public class Tweet : MonoBehaviour {
         options.enabled = false;
 	}
 
+    float timer;
 	// Update is called once per frame
 	void Update () {
 
