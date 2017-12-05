@@ -9,21 +9,29 @@ public class AdjustPosition : MonoBehaviour {
     public int xMul;
     public int yMul;
 
-    private RectTransform textRect;
+    public float widthPercent;
+    public float heightPercent;
+
+    private RectTransform currentRect;
     private RectTransform parentRect;
 
     void Start()
     {
         parentRect = gameObject.transform.parent.GetComponentInParent<RectTransform>();
-        textRect = GetComponent<RectTransform>();
+        currentRect = GetComponent<RectTransform>();
+        Debug.Log("current size: " + currentRect.sizeDelta);
+        Debug.Log("parent size: " + parentRect.rect.size);
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        float x = xMul * ((textRect.rect.width / 2) + parentRect.rect.width * parentWidthPercent / 100);
-        float y = yMul * ((textRect.rect.height / 2) + (parentRect.rect.height * parentHeightPercent / 100));
-        textRect.anchoredPosition = new Vector3(x, y, 0);
+        float x = xMul * ((currentRect.rect.width / 2) + parentRect.rect.width * parentWidthPercent / 100);
+        float y = yMul * ((currentRect.rect.height / 2) + (parentRect.rect.height * parentHeightPercent / 100));
+        currentRect.anchoredPosition = new Vector3(x, y, 0);
+
+        currentRect.sizeDelta = new Vector2(parentRect.rect.size.x * (widthPercent / 100), parentRect.rect.size.y * (heightPercent/ 100));
+        
     }
 }
