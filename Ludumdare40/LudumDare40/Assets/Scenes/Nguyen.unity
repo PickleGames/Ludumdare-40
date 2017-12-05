@@ -543,6 +543,11 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: 151.9
       objectReference: {fileID: 0}
+    - target: {fileID: 114368890363557694, guid: e8ade42372613ee4cb24b9068090757b,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114944652797404508, guid: e8ade42372613ee4cb24b9068090757b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e8ade42372613ee4cb24b9068090757b, type: 2}
@@ -1819,7 +1824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.103}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

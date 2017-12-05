@@ -31,6 +31,6 @@ public class RemoteAnimation : MonoBehaviour {
 
         //animation["PhoneAnimation"].time = animation["PhoneAnimation"].length;
         anima.SetBool("IsClick", false);
-        anima.Play("PhoneAnimation");
+        anima.Play("RemoteAnimation");
     }
 }
