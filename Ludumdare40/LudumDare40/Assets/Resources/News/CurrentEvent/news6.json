@@ -1,0 +1,20 @@
+{
+  "Event": "Tax Cut Plan",
+  "Channels" : {
+	"Conservative" : ["Current tax is weakening our business.", "We are losing our place on international market."],
+	"Liberal" : ["Taxing is the way to enforce equality.", "Top one percent is earning too much!"]
+  },
+  "Laws": "Approve Drumpf's Tax Cut Plan",
+  "Approve": "Conservative",
+  "ApproveTweet" : ["We are cutting anti-business tax down. With that, we will #MaketheStatesGreatAgain","Our country is reaching the goal to promote business and making more jobs."],
+  "Veto": "Liberal",
+  "VetoTweet": ["Enough taxing is necessary to provide fair share to our people.", "By taxing top one percent, we are helping our people."],
+  "Conservative":{
+    "GoodTV": ["Anti-business tax is down! President Drumpf is making the States great again.","Employment rate is estimated to increase by 2% next quarter."],
+    "BadTV" : ["President does not take action to protect business.", "More jobs will disappear next quarter","Our economy is in danger!"]
+  },
+  "Liberal":{
+    "GoodTV": ["Fair share is safe now.","Top one percent will pay!"],
+    "BadTV" : ["More deficit next finical year.", "How can we help our people?","Social welfare program lacks of budget."]
+  }
+}

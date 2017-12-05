@@ -1,0 +1,20 @@
+{
+  "Event": "Denounce Fake News",
+  "Channels" : {
+	"Conservative" : ["ONN is sending wrong message to people everyday.", "What should president say about ONN?"],
+	"Liberal" : ["Save our people from President Drumpf.", "Drumpf should not be the president."]
+  },
+  "Laws": "Ban Fake News",
+  "Approve": "Conservative",
+  "ApproveTweet" : ["ONN reports fake news to our people. BAD!","Fake news reporter ONN should feel ashamed!"],
+  "Veto": "Liberal",
+  "VetoTweet": ["ONN may be an honest media sometimes.", "I had a good time interviewing with ONN reporter."],
+  "Conservative":{
+    "GoodTV": ["President points out the fact that ONN reports fake news.","A defense of integrity of media!."],
+    "BadTV" : ["President fails to point out the illegitamacy of ONN.", "We need president to say something.","ONN is distorting facts!"]
+  },
+  "Liberal":{
+    "GoodTV": ["President shows some friendliness to media.","New interviewing with President Drumpf."],
+    "BadTV" : ["An attack on freedom of press!", "President's inappropriate condemn on media.","Is press under threat?"]
+  }
+}
