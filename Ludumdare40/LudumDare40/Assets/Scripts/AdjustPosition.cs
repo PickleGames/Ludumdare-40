@@ -8,6 +8,7 @@ public class AdjustPosition : MonoBehaviour {
     public float parentHeightPercent;
     public int xMul;
     public int yMul;
+
     private RectTransform textRect;
     private RectTransform parentRect;
 
