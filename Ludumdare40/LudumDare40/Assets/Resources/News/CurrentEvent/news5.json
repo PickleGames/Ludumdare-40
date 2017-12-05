@@ -1,0 +1,20 @@
+{
+	"Event": "Lizard People",
+	"Channels": {
+		"Conservative": ["Lizard 'people' are abominations destroying our great country", "Unpatriotic Lizards refuse to stand for national anthem at school talent show"],
+		"Liberal": ["Embrace your Lizard neighbor! You are probably more privileged  than they are", "Offensive slur 'Lizard' used by President in reference to Humanoid Reptiles "]
+	},
+	"Laws": "Ban Lizard People",
+	"Approve": "Conservative",
+	"ApproveTweet": ["This is not a 'restriction' like FAKE NEWS says, since they won't say it I WILL. This is a BAN ", "The Lizard universe does not send their best. They're thugs, rapists, some are good maybe. Most BAD!"],
+	"Veto": "Liberal",
+	"VetoTweet": ["The Lizards have said some great things about me, Godzilla loves me! Ask anyone!", "I don't hate Lizardos, I have lots of Lizz friends, I even employ some of them"],
+	"Conservative": {
+		"GoodTV": ["Drumpf makes city streets safe again from Lizard crime", "Lizard takeover put to a halt by great president", "Country much safer after Lizard people banned"],
+		"BadTV": ["President put country and American society at risk! Lizard people still not banned! ", "Real true actuall homegrown Americans repulsed by Lizard People Ban decision"]
+	},
+	"Liberal": {
+		"GoodTV": ["President puts Humanoid Reptiles at ease with recent repeal of Ban", "Drumpf loves all people and species!"],
+		"BadTV": ["Drumpf strikes fear into Humanoid Reptile community", "Drumpf authortian? What''s next, Reptile internment camps?", "Humanoid Reptiles are worried for their future in America"]
+	}
+}

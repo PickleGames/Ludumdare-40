@@ -18,28 +18,19 @@ public class TV : MonoBehaviour
     public bool isTVDone, remoteBroken, remoteOut;
     public NewsCycle newCyle;
 	public bars barControl;
-	public Button remote, remoteButton, backButton;
 
-    private RectTransform tRect, cRect, rRect;
+    private RectTransform tRect, cRect;
     private Vector3 startPos, hidden;
 
 
     void Start()
     {
 		remoteBroken = false;
-        remoteOut = true;
-		remoteButton.enabled = false;
 		obstruct = Random.Range (15.0f, 25.0f);
         tRect = breakingNews.GetComponent<RectTransform>();
         cRect = canvas.GetComponent<RectTransform>();
-		rRect = remote.GetComponent<RectTransform> ();
 
-		hidden = new Vector3(-rRect.rect.width * 0.1f, Screen.height*1.1f - rRect.rect.height, rRect.position.z); 
-        startPos = new Vector3(cRect.transform.position.x + cRect.rect.width * cRect.localScale.x * 0.5f + tRect.rect.width * cRect.localScale.x
-                              , cRect.transform.position.y - cRect.rect.height * cRect.localScale.y * 0.5f + tRect.rect.height * cRect.localScale.y * 0.5f
-                              , tRect.transform.position.z);
-		rRect.position = hidden;
-        // startPos = new Vector3();
+        startPos = tRect.position;
 
         tvChannels = new List<Channel>();
         tvChannels.Add(new Channel(Channel.Trump.PRO, "FOX news", "Conservative", "Trump is great!!!!!!!!!!!"));
@@ -48,10 +39,6 @@ public class TV : MonoBehaviour
         tvChannels.Add(new Channel(Channel.Trump.NEUTRAL, "", "", "~~~Static ~~ zzzhhzzz Staticcc~~~"));
         ResetDisplay();
 
-        remoteButton.onClick.AddListener(SwitchClick);
-        remote.onClick.AddListener(RemoteOutClick);
-		backButton.onClick.AddListener(RemoteInClick);
-		
     }
 
     // Update is called once per frame
@@ -92,7 +79,6 @@ public class TV : MonoBehaviour
             {
 				if (remoteBroken) {
 					remoteBroken = false;
-					remoteButton.enabled = true;
 					remoteCount = 0;
 				} else {
 					remoteCount--;
@@ -102,49 +88,36 @@ public class TV : MonoBehaviour
         }
 
         //TODO : WTF IS THIS !!!!
-		//if (obstructTime >= obstruct) {
-		//	if (displaying [channelNum].side != Channel.Trump.CON) {
-		//		do {
-  //                  Debug.Log("runn");
-		//			SwitchChannel ();
-		//		} while(displaying [channelNum].side != Channel.Trump.CON);
-		//	}
-		//	obstruct = Random.Range (15.0f, 25.0f);
-		//	obstructTime = 0;
-		//}
+        if (obstructTime >= obstruct)
+        {
+            bool isCon = false;
+            for (int i = 0; i < tvChannels.Count; i++)
+            {
+                if (tvChannels[channelNum].side == Channel.Trump.CON)
+                {
+                    isCon = true;
+                    break;
+                }
+            }
+            if (tvChannels[channelNum].side != Channel.Trump.CON && isCon)
+            {
+                do
+                {
+                    Debug.Log("runn");
+                    SwitchChannel();
+                } while (tvChannels[channelNum].side != Channel.Trump.CON);
+            }
+            obstruct = Random.Range(15.0f, 25.0f);
+            obstructTime = 0;
+        }
 
-		if (tvChannels [channelNum].side == Channel.Trump.CON) {
+        if (tvChannels [channelNum].side == Channel.Trump.CON) {
 			barControl.ChangeBar(0.085f*barControl.popularity/bars.MAX_BAR *2, "a");
 		} else if(tvChannels [channelNum].side == Channel.Trump.PRO){
 			barControl.ChangeBar(-0.075f*barControl.popularity/bars.MAX_BAR *2, "a");
 		}
     }
 
-	void RemoteOutClick()
-	{
-		rRect.position =  new Vector3(rRect.rect.width*0.5f +10, rRect.position.y, rRect.position.z);
-		remote.enabled = false;
-		remoteButton.enabled = true;
-		remoteOut = true;
-	}
-
-	void SwitchClick()
-	{
-		if (remoteOut) {
-			SwitchChannel ();
-		}
-	}
-
-	void RemoteInClick()
-	{
-		if (remoteOut) {
-			rRect.position = hidden;
-			remote.enabled = true;
-			remoteButton.enabled = false;
-			remoteOut = false;
-		}
-		Debug.Log ("button click");
-	}
 
     public void SwitchChannel()
     {
@@ -158,7 +131,6 @@ public class TV : MonoBehaviour
 			if (remoteCount >= 50) {
 				remoteBroken = true;
 				remoteTime = 0;
-				remoteButton.enabled = false;
 			}
 			ResetDisplay ();
 		}

@@ -4,7 +4,7 @@ using UnityEngine;
 //using System.IO;
 
 public class TrumpNews : MonoBehaviour {
-    private string path = "News/TrumpEvent";
+    private string path = "News/TrumpEvent/";
 
     private string[] goodNews;
     private string[] badNews;
