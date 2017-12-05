@@ -38,6 +38,7 @@ public class bars : MonoBehaviour {
 
 	void Win(){
 		Debug.Log("you win");
+		SceneManager.LoadScene("WinScene");
 	}
 
 	void Lose(){
