@@ -1,0 +1,20 @@
+{
+  "Event": "TPP",
+  "Channels" : {
+	"Conservative" : ["Bad trade is hurting this country", "China biggest competitor to US econmoy"],
+	"Liberal" : ["Trade war on the horizon?", "China is our friend, not enemy. Make peace now!]
+  },
+  "Laws": "Trans Pacific Partnership",
+  "Approve": "Liberal",
+  "ApproveTweet" : ["TPP is a really big huge deal and I just made it better!","I just negotiated the best deal, that any president ever has #TPP"],
+  "Veto": "Conservative",
+  "VetoTweet": ["TPP was the worst thing that happend to this country! NO MORE! #MEGAMAN", "AMERICA will NOT lose at trade anymore, thanks to me! #Great"],
+  "Conservative":{
+    "GoodTV": ["Drumpf save America from bad trade!","Drumpf make American econmoy better than before!"],
+    "BadTV" : ["President hand econmoy to China", "Drumpf gives commies exaclty what they wanted","President breaks promise to save American econmoy"]
+  },
+  "Liberal":{
+    "GoodTV": ["Drumpf prevents trade war!!","America stays in TPP, Thanks President! "],
+    "BadTV" : ["Drumpf starts trade war with China!!", "Drumpf has doomed the future","Why TPP was good for America, and how will America survive?"]
+  }
+}

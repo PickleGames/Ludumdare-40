@@ -1,0 +1,20 @@
+{
+  "Event": "Russia Collusion",
+  "Channels" : {
+	"Conservative" : ["New Coca-Cola flavour. Find out at 9pm central", "Do cats have real friends? Coming up later!"],
+	"Liberal" : ["New evidence of White House Russian Collusion", "New testimony from White House offical colluded with Russia"]
+  },
+  "Laws": "Investigate Russian Hacking",
+  "Approve": "Liberal",
+  "ApproveTweet" : ["I will prove there is no COLLUSION #FAKE!","I have nothing to hide, not in Russia! No Russian 'secrets' or COLLUSION!"],
+  "Veto": "Conservative",
+  "VetoTweet": ["I don't know ANY Russians, I don't even know where Russia is!!","I can't speak Russian, but FAKE NEWS say I colluded! How?!? #FAKE"],
+  "Conservative":{
+    "GoodTV": ["Grace Dorothy from Hepp, Virginia turns 107 today!","New emoji is driving people crazy! Find out later at 11pm"],
+    "BadTV" : ["", "Drumpf gives commies exaclty what they wanted","President breaks promise to American Coal"]
+  },
+  "Liberal":{
+    "GoodTV": ["Drumpf must be really dumb!","Drumpf seals his own fate"],
+    "BadTV" : ["Drumpf avoids the truth", "President conflict of interest!!","Is this treason?!?"]
+  }
+}
