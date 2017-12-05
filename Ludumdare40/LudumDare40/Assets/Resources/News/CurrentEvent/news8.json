@@ -1,0 +1,20 @@
+{
+  "Event": "Build the Wall",
+  "Channels" : {
+	"Conservative" : ["Immigrants are taking our jobs.", "Immigrants do not fit our society."],
+	"Liberal" : ["Immigration helps the economy.", "We should offer everyone opportunities here."]
+  },
+  "Laws": "Build the Wall",
+  "Approve": "Conservative",
+  "ApproveTweet" : ["We have approved the bill to build the GREAT GREAT WALL. #MAGA","We will stop others from stealing our money. Those Hombres will pay for that WALL."],
+  "Veto": "Liberal",
+  "VetoTweet": ["Our country will remain open to all who pursuit dreams.", "We welcome all to work with us to make strong economy."],
+  "Conservative":{
+    "GoodTV": ["Job-taking immigrants will be stoped soon.","Great job in defending our country."],
+    "BadTV" : ["Drumpf fails to protect our jobs.", "Are immigrants making our society less stable?","Immigrants are responsible for our people's financial struggles"]
+  },
+  "Liberal":{
+    "GoodTV": ["Drumpf actually defended our value about immigration.","The states welcome all dream chasers."],
+    "BadTV" : ["Immigration in danger!", "A denouncement on our open value!","Deumpf is about the build the wall that spilts our world."]
+  }
+}

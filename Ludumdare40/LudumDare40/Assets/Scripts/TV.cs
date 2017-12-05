@@ -33,9 +33,9 @@ public class TV : MonoBehaviour
         startPos = tRect.position;
 
         tvChannels = new List<Channel>();
-        tvChannels.Add(new Channel(Channel.Trump.PRO, "FOX news", "Conservative", "Trump is great!!!!!!!!!!!"));
-        tvChannels.Add(new Channel(Channel.Trump.CON, "CNN", "Liberal", "Trump is shit!"));
-        tvChannels.Add(new Channel(Channel.Trump.NEUTRAL, "BBC", "Liberal", "Trump is ..."));
+        tvChannels.Add(new Channel(Channel.Trump.PRO, "BOX News", "Conservative", "Trump is great!!!!!!!!!!!"));
+        tvChannels.Add(new Channel(Channel.Trump.CON, "OBabo News", "Liberal", "Trump is shit!"));
+        tvChannels.Add(new Channel(Channel.Trump.CON, "Not Fake News", "Liberal", "Trump is ..."));
         tvChannels.Add(new Channel(Channel.Trump.NEUTRAL, "", "", "~~~Static ~~ zzzhhzzz Staticcc~~~"));
         ResetDisplay();
 
@@ -107,17 +107,16 @@ public class TV : MonoBehaviour
                     SwitchChannel();
                 } while (tvChannels[channelNum].side != Channel.Trump.CON);
             }
-            obstruct = Random.Range(15.0f, 25.0f);
+            obstruct = Random.Range(10.0f, 15.0f);
             obstructTime = 0;
         }
 
         if (tvChannels [channelNum].side == Channel.Trump.CON) {
-			barControl.ChangeBar(0.085f*barControl.popularity/bars.MAX_BAR *2, "a");
+			barControl.ChangeBar(0.15f*barControl.popularity/bars.MAX_BAR *2, "a");
 		} else if(tvChannels [channelNum].side == Channel.Trump.PRO){
-			barControl.ChangeBar(-0.075f*barControl.popularity/bars.MAX_BAR *2, "a");
+			barControl.ChangeBar(-0.05f*barControl.popularity/bars.MAX_BAR *2, "a");
 		}
     }
-
 
     public void SwitchChannel()
     {

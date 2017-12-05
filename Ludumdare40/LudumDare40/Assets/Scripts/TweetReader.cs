@@ -7,7 +7,7 @@ public class TweetReader : MonoBehaviour {
 
     public enum TweetType { MEDIA, EVENT, POLICY }
 
-    private string path = "Assets/Resources/Tweets/";
+    private string path = "Tweets/";
     private string[] trumpTweets;
     private string currentTweet;
 
@@ -24,7 +24,7 @@ public class TweetReader : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        ReadFile("Tweets1.txt");
+        ReadFile("Tweets1");
         policyTweets = new List<string>(trumpTweets);
         eventTweets = new List<string>(trumpTweets);
         //Debug.Log(currentTweet);
@@ -38,11 +38,9 @@ public class TweetReader : MonoBehaviour {
 
     public void ReadFile(string fileName)
     {       
-        StreamReader reader = new StreamReader(path + fileName);
-
-        string text = reader.ReadToEnd();
+        TextAsset txts = Resources.Load(path + fileName) as TextAsset;
+        string text = txts.text;
         trumpTweets = text.Split(':');
-        reader.Close();
     }
 
 

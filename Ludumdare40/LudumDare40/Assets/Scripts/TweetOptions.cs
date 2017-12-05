@@ -11,7 +11,7 @@ public class TweetOptions : MonoBehaviour {
     private PhoneApp phone;
 
     public Canvas PA_Canvas;
-
+    public const float TIME_TO_TWEET = 4f;
     // Use this for initialization
     void Start () {
         tweetReader = GetComponentInParent<TweetReader>();
@@ -26,7 +26,7 @@ public class TweetOptions : MonoBehaviour {
         {
             timer += Time.deltaTime;
         }
-        if(timer >= 10)
+        if(timer >= TIME_TO_TWEET)
         {
             timer = 0;
             isTweet = false;
