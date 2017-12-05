@@ -1358,6 +1358,12 @@ Prefab:
       propertyPath: parentWidthPercent
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114568699886699008, guid: 156839055e3c2b04cbb92ae909451876,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 437897f986bca814cafccef16d9a5469,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 156839055e3c2b04cbb92ae909451876, type: 2}
   m_IsPrefabParent: 0
