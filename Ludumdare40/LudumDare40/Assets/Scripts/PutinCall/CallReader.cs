@@ -28,7 +28,7 @@ public class CallReader : MonoBehaviour {
         string[] phrases;
         //StreamReader reader = new StreamReader(path + file);
         TextAsset txts = Resources.Load(path + file) as TextAsset;
-        Debug.Log(txts);
+        //Debug.Log(txts);
         string text = txts.text;
         //string text = reader.ReadToEnd();
         phrases = text.Split(';');

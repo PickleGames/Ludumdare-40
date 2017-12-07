@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class bars : MonoBehaviour {
+    enum AnxietyState { GoUP, GoDown, Neutral}
+    AnxietyState anxietyState = AnxietyState.Neutral;
+
 	public float popularity;
 	public float anxiety;
 	public const float MAX_BAR = 100.0f;
@@ -14,15 +17,21 @@ public class bars : MonoBehaviour {
 
 	public float pHeight;
 	public float aHeight;
+    public float anxietyWarningPercent = 70;
+    public RectTransform aParentRec;
+    public RectTransform pParentRec;
+
+    private bool isAnxietyWarningCall;
 
 	void Start () {
 		popularity = 50.0f;
 		anxiety = 50.0f;
 		pHeight = pBar.rectTransform.rect.height;
 		aHeight = aBar.rectTransform.rect.height;
-		pBar.GetComponent<RectTransform>().sizeDelta = new Vector2(pBar.rectTransform.rect.width, pHeight * popularity / MAX_BAR);
-		aBar.GetComponent<RectTransform>().sizeDelta = new Vector2(aBar.rectTransform.rect.width, aHeight * anxiety / MAX_BAR);
-	}
+
+        UpdateBarsSize("b");
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,30 +41,40 @@ public class bars : MonoBehaviour {
 			Lose ();
 		}
 
-		//if (Input.GetKeyDown (KeyCode.Space))
-		//	changeBar (-10, "a");
-	}
+        if (CheckValidAnxietyCall() && !isAnxietyWarningCall)
+        {
+            Debug.Log("call anxiety coroutine");
+            StopCoroutine("Blink");
+            StartCoroutine("Blink");
+            isAnxietyWarningCall = true;
+        }
 
-	void Win(){
-		Debug.Log("you win");
-		SceneManager.LoadScene("WinScene");
-	}
-
-	void Lose(){
-		Debug.Log("you lose");
-        SceneManager.LoadScene("EndScene");
+        UpdateBarsSize("b");
     }
 
 	public void ChangeBar(float num, string bar){
 		if (bar.StartsWith ("a")|| bar.StartsWith ("A")) {
 			if (anxiety <= MAX_BAR) {
-				anxiety += num;
+                Debug.Log("added umber " + num);
+                if(num > 0)
+                {
+                    anxietyState = AnxietyState.GoUP;
+                }else if(num < 0)
+                {
+                    anxietyState = AnxietyState.GoDown;
+                }
+                else
+                {
+                    anxietyState = AnxietyState.Neutral;
+                }
+                anxiety += num * popularity / MAX_BAR * 2;
+
 				if (anxiety > MAX_BAR) {
 					anxiety = MAX_BAR;
 				} else if (anxiety < 0) {
 					anxiety = 0;
 				}
-				aBar.GetComponent<RectTransform> ().sizeDelta = new Vector2 (aBar.rectTransform.rect.width, aHeight * anxiety / MAX_BAR);
+                UpdateBarsSize("a");
 			}
 		} else if (bar.StartsWith ("p") || bar.StartsWith ("P")) {
 			if (popularity <= MAX_BAR) {
@@ -65,8 +84,62 @@ public class bars : MonoBehaviour {
 				} else if (popularity < 0) {
 					popularity = 0;
 				}
-				pBar.GetComponent<RectTransform> ().sizeDelta = new Vector2 (pBar.rectTransform.rect.width, pHeight * popularity / MAX_BAR);
+                UpdateBarsSize("p");
 			}
 		}
 	}
+
+    private void Win()
+    {
+        Debug.Log("you win");
+        SceneManager.LoadScene("WinScene");
+    }
+
+    private void Lose()
+    {
+        Debug.Log("you lose");
+        SceneManager.LoadScene("EndScene");
+    }
+
+    IEnumerator Blink()
+    {
+        //Debug.Log(anxiety);
+        while (CheckValidAnxietyCall())
+        {
+            Debug.Log("anxie state " + anxietyState);
+            
+            Color c = aBar.color;
+            c = new Color(c.r, c.g, c.b, .5f);
+            aBar.color = c;
+            Debug.Log("change alpah 1");
+            yield return new WaitForSeconds(.1f);
+            c = new Color(c.r, c.g, c.b, 1f);
+            aBar.color = c;
+            Debug.Log("change alpah 2");
+            yield return null;
+        }
+        Debug.Log("call out side");
+        isAnxietyWarningCall = false;
+    }
+
+    private bool CheckValidAnxietyCall()
+    {
+        return anxiety >= MAX_BAR * (anxietyWarningPercent / 100) && (anxietyState == AnxietyState.GoUP);
+    }
+
+    private void UpdateBarsSize(string bar)
+    {
+        if (bar.StartsWith("a"))
+        {
+            aBar.GetComponent<RectTransform>().sizeDelta = new Vector2(aParentRec.rect.width, aParentRec.rect.height* anxiety / MAX_BAR);
+        }else if (bar.StartsWith("p"))
+        {
+            pBar.GetComponent<RectTransform>().sizeDelta = new Vector2(pParentRec.rect.width, pParentRec.rect.height * popularity / MAX_BAR);
+        }
+        else
+        {
+            aBar.GetComponent<RectTransform>().sizeDelta = new Vector2(aParentRec.rect.width, aParentRec.rect.height * anxiety / MAX_BAR);
+            pBar.GetComponent<RectTransform>().sizeDelta = new Vector2(pParentRec.rect.width, pParentRec.rect.height * popularity / MAX_BAR);
+        }
+    }
 }

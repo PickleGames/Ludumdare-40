@@ -25,7 +25,7 @@ public class CurrentEvent : MonoBehaviour {
             for(int i = 0; i < numberOfFile; i++)
             {
                 dirs[i] = "News/CurrentEvent/news" + (i + 1) + "";
-                Debug.Log(dirs[i]);
+                //Debug.Log(dirs[i]);
             }
             //Debug.Log("number of news " + dirs.Length);
         }

@@ -18,7 +18,7 @@ public class RemoteControl : MonoBehaviour {
         rRect = GetComponent<RectTransform>();
 
         hidden = rRect.anchoredPosition;
-        Debug.Log("hidd pos " + hidden);
+        //Debug.Log("hidd pos " + hidden);
 
     }
 	

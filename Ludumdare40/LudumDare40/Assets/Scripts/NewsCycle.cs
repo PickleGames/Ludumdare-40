@@ -100,10 +100,15 @@ public class NewsCycle : MonoBehaviour {
         //Debug.Log(currentEvent.law.IsChose + "/" + !isTVLawUpdated + "/" + tv.isTVDone);
     }
 
+    public bool IsNewCycleStayTooLong()
+    {
+        return timerCommon >= timeCycle * 1.5 || timerLaws >= timeLawsCycle * 1.5;
+    }
+
     public void RandomNewsEvent()
     {
         float num = Random.Range(0f, 1f);
-        if(num < 0.50f)
+        if(num < 0.70)
         {
             newsType = NewsType.CurrentEvent;
         }

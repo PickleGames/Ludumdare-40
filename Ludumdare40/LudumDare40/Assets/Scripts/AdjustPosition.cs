@@ -19,8 +19,8 @@ public class AdjustPosition : MonoBehaviour {
     {
         parentRect = gameObject.transform.parent.GetComponentInParent<RectTransform>();
         currentRect = GetComponent<RectTransform>();
-        Debug.Log("current size: " + currentRect.sizeDelta);
-        Debug.Log("parent size: " + parentRect.rect.size);
+        //Debug.Log("current size: " + currentRect.sizeDelta);
+        //Debug.Log("parent size: " + parentRect.rect.size);
     }
 
     // Update is called once per frame

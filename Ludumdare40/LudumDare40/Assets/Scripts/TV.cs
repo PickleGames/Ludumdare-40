@@ -36,7 +36,7 @@ public class TV : MonoBehaviour
         tvChannels.Add(new Channel(Channel.Trump.PRO, "BOX News", "Conservative", "Trump is great!!!!!!!!!!!"));
         tvChannels.Add(new Channel(Channel.Trump.CON, "OBabo News", "Liberal", "Trump is shit!"));
         tvChannels.Add(new Channel(Channel.Trump.CON, "Not Fake News", "Liberal", "Trump is ..."));
-        tvChannels.Add(new Channel(Channel.Trump.NEUTRAL, "", "", "~~~Static ~~ zzzhhzzz Staticcc~~~"));
+        tvChannels.Add(new Channel(Channel.Trump.CON, "GNN", "Liberal", "Trump is now the president, will this be our doom day!?"));
         ResetDisplay();
 
     }
@@ -48,7 +48,7 @@ public class TV : MonoBehaviour
         float speed = m * cRect.rect.width * cRect.localScale.x;
         tRect.transform.Translate(Vector3.left * speed, Space.Self);
 
-        if (tRect.transform.position.x < cRect.transform.position.x - cRect.rect.width * cRect.localScale.x * 0.5f - tRect.rect.width * .5f * cRect.localScale.x)
+        if (tRect.transform.position.x < cRect.transform.position.x - cRect.rect.width * cRect.localScale.x * 0.5f - tRect.rect.width * .5f * cRect.localScale.x || newCyle.IsNewCycleStayTooLong())
         {
             isTVDone = true;
             if (tRect.transform.position.x < cRect.transform.position.x - cRect.rect.width * cRect.localScale.x * 0.5f - tRect.rect.width * .65f * cRect.localScale.x)
@@ -88,34 +88,72 @@ public class TV : MonoBehaviour
         }
 
         //TODO : WTF IS THIS !!!!
-        if (obstructTime >= obstruct)
+        //if (obstructTime >= obstruct)
+        //{
+        //    bool isCon = false;
+        //    for (int i = 0; i < tvChannels.Count; i++)
+        //    {
+        //        if (tvChannels[channelNum].side == Channel.Trump.CON)
+        //        {
+        //            isCon = true;
+        //            break;
+        //        }
+        //    }
+        //    if (tvChannels[channelNum].side != Channel.Trump.CON && isCon)
+        //    {
+        //        do
+        //        {
+        //            Debug.Log("runn");
+        //            SwitchChannel();
+        //        } while (tvChannels[channelNum].side != Channel.Trump.CON);
+        //    }
+        //    obstruct = Random.Range(10.0f, 15.0f);
+        //    obstructTime = 0;
+        //}
+
+        SwitchChannelIfStayToLongOnPro(5);
+
+        if (newCyle.IsNewCycleStayTooLong())
         {
-            bool isCon = false;
-            for (int i = 0; i < tvChannels.Count; i++)
-            {
-                if (tvChannels[channelNum].side == Channel.Trump.CON)
-                {
-                    isCon = true;
-                    break;
-                }
-            }
-            if (tvChannels[channelNum].side != Channel.Trump.CON && isCon)
-            {
-                do
-                {
-                    Debug.Log("runn");
-                    SwitchChannel();
-                } while (tvChannels[channelNum].side != Channel.Trump.CON);
-            }
-            obstruct = Random.Range(10.0f, 15.0f);
-            obstructTime = 0;
+            isTVDone = true;
         }
 
         if (tvChannels [channelNum].side == Channel.Trump.CON) {
-			barControl.ChangeBar(0.15f*barControl.popularity/bars.MAX_BAR *2, "a");
+			barControl.ChangeBar(0.15f, "a");
 		} else if(tvChannels [channelNum].side == Channel.Trump.PRO){
-			barControl.ChangeBar(-0.05f*barControl.popularity/bars.MAX_BAR *2, "a");
-		}
+			barControl.ChangeBar(-0.075f, "a");
+        }
+        else
+        {
+            barControl.ChangeBar(0, "a");
+        }
+
+        foreach(Channel c in tvChannels)
+        {
+            //Debug.Log(c.channelName + " " + c.side);
+        }
+    }
+    
+    private float timeProStayTooLong;
+
+    private void SwitchChannelIfStayToLongOnPro(float maxTime)
+    {
+        
+        if (tvChannels[channelNum].side == Channel.Trump.PRO)
+        {
+            timeProStayTooLong += Time.deltaTime;
+        }
+        else
+        {
+            timeProStayTooLong = 0;
+        }
+
+        if (timeProStayTooLong >= maxTime)
+        {
+            SwitchChannel();
+            timeProStayTooLong = 0;
+        }
+
     }
 
     public void SwitchChannel()
@@ -132,6 +170,7 @@ public class TV : MonoBehaviour
 				remoteTime = 0;
 			}
 			ResetDisplay ();
+            isTVDone = true;
 		}
     }
 
@@ -160,18 +199,21 @@ public class TV : MonoBehaviour
 
     public void UpdateChannel(string cType, List<string> newContent, Channel.Trump sideWith)
     {
-        if (isTVDone)
+        //if (isTVDone)
+        //{
+        //    Debug.Log("change channell");
+
+        //}
+        Debug.Log("Change channel");
+        for (int i = 0; i < tvChannels.Count; i++)
         {
-            for (int i = 0; i < tvChannels.Count; i++)
+            if (tvChannels[i].type.Equals(cType))
             {
-                if (tvChannels[i].type.Equals(cType))
-                {
-                    tvChannels[i].content = newContent[Random.Range(0, newContent.Count)];
-                    tvChannels[i].side = sideWith;
-                }
+                tvChannels[i].content = newContent[Random.Range(0, newContent.Count)];
+                tvChannels[i].side = sideWith;
             }
-            ResetDisplay();
         }
+        ResetDisplay();
         newCyle.isTimeOver = false;
     }
 

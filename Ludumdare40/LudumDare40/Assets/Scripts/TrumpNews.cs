@@ -31,7 +31,7 @@ public class TrumpNews : MonoBehaviour {
         //StreamReader reader = new StreamReader(path + fileName);
         //string text = reader.ReadToEnd();
         TextAsset txts = Resources.Load(path + fileName) as TextAsset;
-        Debug.Log(txts);
+        //Debug.Log(txts);
         string text = txts.text;
         string[] news = text.Split('|');
         goodNews = news[0].Split(';');
@@ -44,7 +44,7 @@ public class TrumpNews : MonoBehaviour {
     {
         foreach(string s in currentNews)
         {
-            //Debug.Log(s);
+            Debug.Log(s);
         }
     }
 
